@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import NavContext from "./context/NavContext";
 
 import { VscEyeClosed } from "react-icons/vsc";
 
 const NavbarNav = () => {
+  const { openDrawerH, setOpenDrawerH } = useContext(NavContext);
   const [openDrawer, setOpenDrawer] = useState(false);
   const drawerRef = useRef(null);
-
-  // with usecontext?????
 
   useEffect(() => {
     /* Close the drawer when the user clicks outside of it __> MEANS????????????? */
@@ -17,7 +17,7 @@ const NavbarNav = () => {
         return;
       }
 
-      setOpenDrawer(false);
+      setOpenDrawerH(false);
     };
 
     document.addEventListener("mousedown", closeDrawer);
@@ -27,12 +27,12 @@ const NavbarNav = () => {
     <Navbar.Wrapper>
       <Navbar.Logo>BS</Navbar.Logo>
 
-      <HamburgerButton.Wrapper onClick={() => setOpenDrawer(true)}>
+      <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
         <HamburgerButton.Lines />
       </HamburgerButton.Wrapper>
 
-      <Navbar.Items ref={drawerRef} openDrawer={openDrawer}>
-        <CloseButton.Wrapper onClick={() => setOpenDrawer()}>
+      <Navbar.Items ref={drawerRef} openDrawer={!openDrawerH}>
+        <CloseButton.Wrapper onClick={() => setOpenDrawerH(true)}>
           <VscEyeClosed style={CloseStyle} />
         </CloseButton.Wrapper>
         <Navbar.Item>
@@ -122,9 +122,7 @@ const Navbar = {
       openDrawer ? `translateX(0)` : `translateX(100%)`};
 
     @media only screen and (max-width: 40em) {
-
       z-index: 1;
-    
 
       height: 100%;
       width: 100%;

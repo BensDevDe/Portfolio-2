@@ -5,10 +5,8 @@ import NavContext from "./context/NavContext";
 // import homeImg from "../bgimg/IMG_ME.jpeg";
 
 const Home = () => {
-  const { openDrawer } = useContext(NavContext);
-  console.log(openDrawer);
-  let display = openDrawer === true ? "block" : "none";
-  //let display = "none";
+  const { openDrawerH } = useContext(NavContext);
+  let display = openDrawerH === true ? "block" : "none !important";
 
   const HomePage = {
     Wrapper: styled.section`

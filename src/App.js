@@ -10,14 +10,12 @@ import Contact from "./components/Contact";
 // import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 
-//import NavContext from "./components/context/NavContext";
 import NavState from "./components/context/NavState";
 
 import data from "./projects-data.json";
 
 function App() {
-  // const open = useContext(NavContext);
-  //console.log(open);
+ 
 
   return (
     <NavState>
