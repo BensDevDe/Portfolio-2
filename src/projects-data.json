@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "name": "Movie-Search",
+    "language": "Javascript",
+    "languageLogo": "<FaReact />",
+    "image": "/images/projects/movie-search/movie-search-1.png",
+    "webpage": "https://clever-hypatia-95f748.netlify.app/",
+    "github": "https://github.com/BensDevDe/Movie-Search",
+
+    "detailImage1": "/images/projects/movie-search/movie-search-1.png",
+    "detailImage2": "/images/projects/movie-search/movie-search-2.png",
+    "detailImage3": "/images/projects/movie-search/movie-search-3.png",
+    "detailImage4": "/images/projects/movie-search/movie-search-2.png",
+    "description": "Search Movie, TV and Video Games with the IMDb API.",
+    "technologies": "JS Vanilla, SASS, HTML",
+    "launch": "-"
+  },
+  {
+    "id": 2,
+    "name": "Portfolio-Page",
+    "language": "ReactJS",
+    "languageLogo": "FaReact",
+    "image": "/images/projects/portfolio-page/portfolio-page1.png",
+    "webpage": "https://webogies.com/",
+    "github": "https://github.com/BensDevDe/Portfolio",
+
+    "detailImage1": "/images/projects/portfolio-page/portfolio-page1.png",
+    "detailImage2": "/images/projects/portfolio-page/portfolio-page2.png",
+    "detailImage3": "/images/projects/portfolio-page/portfolio-page3.png",
+    "detailImage4": "/images/projects/portfolio-page/portfolio-page4.png",
+    "description": "My own Portfolio Page",
+    "technologies": "ReactJS, SASS, Framer Motion, React-Slide-Show-Image, EmailJS, MUI, Emotion",
+    "launch": "-"
+  },
+
+  {
+    "id": 3,
+    "name": "Todo-App",
+    "language": "Javascript",
+    "languageLogo": "<FaReact />",
+    "image": "/images/projects/todo-app/todo-app1.png",
+    "webpage": "https://xenodochial-mahavira-e4828c.netlify.app/",
+    "github": "https://github.com/BensDevDe/To-Do-App",
+
+    "detailImage1": "/images/projects/todo-app/todo-app1.png",
+    "detailImage2": "/images/projects/todo-app/todo-app2.png",
+    "detailImage3": "/images/projects/todo-app/todo-app3.png",
+    "detailImage4": "/images/projects/todo-app/todo-app4.png",
+    "description": "Simple Todo-App",
+    "technologies": "JS Vanilla, SASS, HTML",
+    "launch": "-"
+  }
+]
