@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import NavContext from "./context/NavContext";
 
+import navImg from '../bgimg/IMG_ME.jpeg'
+
 import { VscEyeClosed } from "react-icons/vsc";
 
 const NavbarNav = () => {
   const { openDrawerH, setOpenDrawerH } = useContext(NavContext);
-  const [openDrawer, setOpenDrawer] = useState(false);
+  // const [openDrawer, setOpenDrawer] = useState(false);
   const drawerRef = useRef(null);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ const NavbarNav = () => {
         return;
       }
 
-      setOpenDrawerH(false);
+      setOpenDrawerH(true);
     };
 
     document.addEventListener("mousedown", closeDrawer);
@@ -25,16 +27,19 @@ const NavbarNav = () => {
   }, []);
   return (
     <Navbar.Wrapper>
-      <Navbar.Logo>BS</Navbar.Logo>
+      {/* <Content/> */}
+      <Navbar.Logo>
+        <NavLink style={linkStyle} to="/">
+          BS
+        </NavLink>
+      </Navbar.Logo>
 
       <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
         <HamburgerButton.Lines />
       </HamburgerButton.Wrapper>
 
       <Navbar.Items ref={drawerRef} openDrawer={!openDrawerH}>
-        <CloseButton.Wrapper onClick={() => setOpenDrawerH(true)}>
-          <VscEyeClosed style={CloseStyle} />
-        </CloseButton.Wrapper>
+       
         <Navbar.Item>
           <NavLink style={linkStyle} to="/">
             HOME
@@ -58,6 +63,9 @@ const NavbarNav = () => {
             CONTACT
           </NavLink>
         </Navbar.Item>
+        <CloseButton.Wrapper onClick={() => setOpenDrawerH(true)}>
+          X
+        </CloseButton.Wrapper>
       </Navbar.Items>
     </Navbar.Wrapper>
   );
@@ -83,6 +91,7 @@ const Navbar = {
     height: 10%;
 
     margin: 0 auto;
+    padding: 2em 3em;
 
     @media only screen and (max-width: 40em) {
       height: 100vh;
@@ -92,9 +101,9 @@ const Navbar = {
     }
   `,
   Logo: styled.h1`
-    border: 1px solid gray;
-    padding: 1rem 3rem;
+    padding: 0rem 1rem;
     color: white;
+    font-size: 1.5em;
 
     @media only screen and (max-width: 40em) {
       z-index: 999;
@@ -114,7 +123,7 @@ const Navbar = {
 
     background-color: rgba(52, 58, 64, 1);
     color: white;
-    padding: 1rem 3rem;
+    padding: 2.2rem 3rem;
 
     transition: 0.2s ease-out;
 
@@ -132,7 +141,7 @@ const Navbar = {
       align-items: center;
 
       gap: 80px;
-      margin-left: 50px;
+     
 
       background-color: rgba(52, 58, 64, 1);
       padding: 1rem 2rem;
@@ -150,7 +159,7 @@ const Navbar = {
   `}
     }
   `,
-  Item: styled.a`
+  Item: styled.h1`
     padding: 0 1rem;
     cursor: pointer;
     font-size: 1.5em;
@@ -225,21 +234,19 @@ const CloseButton = {
     height: 3rem;
     width: 3rem;
     position: relative;
-    font-size: 2.8rem;
+    font-size: 3rem;
     color: white;
 
-    margin-top: 7px;
+    padding: 0.5rem 3rem;
 
-    display: none;
-
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    // display: flex;
+    // justify-content: center;
+    // align-items: flex-start;
 
     /* Remove default button styles */
     border: none;
     background: transparent;
-    outline: none;
+    // outline: none;
     margin-right: 15px;
 
     cursor: pointer;
@@ -256,8 +263,9 @@ const CloseButton = {
 
     @media only screen and (max-width: 40em) {
       position: absolute;
-      left: 90%;
-      top: 95%;
+      left: 83%;
+      top: 93%;
+      
     }
   `,
 };
@@ -268,9 +276,14 @@ const linkStyle = {
   color: "white",
 };
 
-const CloseStyle = {
-  color: "white",
-};
+// const Content = styled.div`
+//     border: 1px solid #000;
+//     background-image: url(${navImg});
+//     background-size: cover;
+//     background-position: center;
+//     width: 2000px;
+//     height: 2000px;
+// `;
 
 export default NavbarNav;
 

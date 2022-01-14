@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import NavContext from "./context/NavContext";
 
-// import homeImg from "../bgimg/IMG_ME.jpeg";
+
 
 const Home = () => {
   const { openDrawerH } = useContext(NavContext);
@@ -30,10 +30,10 @@ const Home = () => {
 
     Text: styled.div`
       width: 100vw;
-      height: 90%;
+      height: 100%;
       font-size: 2em;
       color: white;
-      border: 1px solid white;
+    
 
       margin: 0 auto;
 
@@ -54,7 +54,7 @@ const Home = () => {
 
   return (
     <HomePage.Wrapper>
-      {/* <img  src={homeImg} alt="" /> */}
+    
 
       <HomePage.Text>
         {" "}
