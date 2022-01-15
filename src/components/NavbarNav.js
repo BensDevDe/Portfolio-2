@@ -33,7 +33,7 @@ const NavbarNav = () => {
 
       <Navbar.Items ref={drawerRef} openDrawer={!openDrawerH}>
         <CloseButton.Wrapper onClick={() => setOpenDrawerH(true)}>
-          <VscEyeClosed style={CloseStyle} />
+        X
         </CloseButton.Wrapper>
         <Navbar.Item>
           <NavLink style={linkStyle} to="/">
@@ -66,7 +66,7 @@ const NavbarNav = () => {
 const Navbar = {
   Wrapper: styled.nav`
     flex: 1;
-    font-family: 'Warnes', cursive;
+    font-family: "Warnes", cursive;
 
     align-self: flex-start;
 
@@ -227,7 +227,7 @@ const CloseButton = {
     width: 3rem;
     position: relative;
     font-size: 2.8rem;
-    color: white;
+    color: black;
 
     margin-top: 7px;
 
@@ -270,7 +270,7 @@ const linkStyle = {
 };
 
 const CloseStyle = {
-  color: "white",
+  color: "black",
 };
 
 export default NavbarNav;

@@ -14,7 +14,7 @@ const Home = () => {
       height: 90%;
       // background-color: rgba(52, 58, 64, 1);
 
-      color: white;
+      color: black;
 
       //    display: flex;
       //    justify-content; center;
@@ -33,7 +33,7 @@ const Home = () => {
       width: 100vw;
       height: 98%;
       font-size: 2em;
-      color: white;
+      color: black;
       border: 1px solid white;
       background-image: url(${imgMain});
       background-size: cover;
@@ -43,10 +43,9 @@ const Home = () => {
 
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
 
-      background-color: #2b2d42;
     `,
   };
 
