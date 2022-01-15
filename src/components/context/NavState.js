@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import NavContext from "./NavContext";
 
 const NavState = (props) => {
-  const [openDrawer, setOpenDrawer] = useState(false);
-  console.log(openDrawer);
+  const [openDrawerH, setOpenDrawerH] = useState(true);
+  console.log(openDrawerH);
 
   const deviceChange = () => {
-    setOpenDrawer(!openDrawer);
+    setOpenDrawerH(!openDrawerH);
   };
 
   return (
-    <NavContext.Provider value={{ openDrawer, deviceChange }}>
+    <NavContext.Provider value={{ openDrawerH, deviceChange, setOpenDrawerH }}>
       {props.children}
     </NavContext.Provider>
   );

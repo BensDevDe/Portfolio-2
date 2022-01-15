@@ -15,12 +15,14 @@ import NavState from "./components/context/NavState";
 
 import data from "./projects-data.json";
 
+import imgMain from "./bgimg/IMG_ME.jpeg"
+
 function App() {
-  // const open = useContext(NavContext);
-  //console.log(open);
+ 
 
   return (
     <NavState>
+ 
       <BrowserRouter>
         <Styles.Wrapper>
           <CSSReset />
@@ -50,10 +52,15 @@ function App() {
 
 const Styles = {
   Wrapper: styled.main`
-    // display: flex;
+    display: flex;
     height: 100%;
     width: 100vw;
     background-color: rgba(52, 58, 64, 1);
+
+    background-image: url(${imgMain});
+    background-repeat: no-repeat;
+    background-size: object-fit;
+
   `,
 };
 
@@ -78,5 +85,7 @@ const CSSReset = createGlobalStyle`
     font-family: sans-serif;  
   }
 `;
+
+
 
 export default App;

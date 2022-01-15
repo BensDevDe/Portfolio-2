@@ -2,19 +2,18 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import NavContext from "./context/NavContext";
 
-// import homeImg from "../bgimg/IMG_ME.jpeg";
+import imgMain from "../bgimg/IMG_ME.jpeg";
 
 const Home = () => {
-  const { openDrawer } = useContext(NavContext);
-  console.log(openDrawer);
-  let display = openDrawer === true ? "block" : "none";
-  //let display = "none";
+  const { openDrawerH } = useContext(NavContext);
+  let display = openDrawerH === true ? "block" : "none !important";
 
   const HomePage = {
     Wrapper: styled.section`
       width: 100vw;
       height: 90%;
-      background-color: rgba(52, 58, 64, 1);
+      // background-color: rgba(52, 58, 64, 1);
+
       color: white;
 
       //    display: flex;
@@ -32,10 +31,13 @@ const Home = () => {
 
     Text: styled.div`
       width: 100vw;
-      height: 90%;
+      height: 98%;
       font-size: 2em;
       color: white;
       border: 1px solid white;
+      background-image: url(${imgMain});
+      background-size: cover;
+      background-position: inherit;
 
       margin: 0 auto;
 
@@ -44,20 +46,12 @@ const Home = () => {
       justify-content: center;
       align-items: center;
 
-      background-color: rgba(52, 58, 64, 1);
+      background-color: #2b2d42;
     `,
   };
 
-  // const ImgStyle = {
-  //   width: "600%",
-  //   height: "400%"
-
-  // };
-
   return (
     <HomePage.Wrapper>
-      {/* <img  src={homeImg} alt="" /> */}
-
       <HomePage.Text>
         {" "}
         <p>Ben Stautner</p>
