@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import NavContext from "./context/NavContext";
 
 import { VscEyeClosed } from "react-icons/vsc";
 
 const NavbarNav = () => {
+  const { openDrawerH, setOpenDrawerH } = useContext(NavContext);
   const [openDrawer, setOpenDrawer] = useState(false);
   const drawerRef = useRef(null);
-
-  // with usecontext?????
 
   useEffect(() => {
     /* Close the drawer when the user clicks outside of it __> MEANS????????????? */
@@ -17,7 +17,7 @@ const NavbarNav = () => {
         return;
       }
 
-      setOpenDrawer(false);
+      setOpenDrawerH(true);
     };
 
     document.addEventListener("mousedown", closeDrawer);
@@ -27,12 +27,12 @@ const NavbarNav = () => {
     <Navbar.Wrapper>
       <Navbar.Logo>BS</Navbar.Logo>
 
-      <HamburgerButton.Wrapper onClick={() => setOpenDrawer(true)}>
+      <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
         <HamburgerButton.Lines />
       </HamburgerButton.Wrapper>
 
-      <Navbar.Items ref={drawerRef} openDrawer={openDrawer}>
-        <CloseButton.Wrapper onClick={() => setOpenDrawer()}>
+      <Navbar.Items ref={drawerRef} openDrawer={!openDrawerH}>
+        <CloseButton.Wrapper onClick={() => setOpenDrawerH(true)}>
           <VscEyeClosed style={CloseStyle} />
         </CloseButton.Wrapper>
         <Navbar.Item>
@@ -66,6 +66,7 @@ const NavbarNav = () => {
 const Navbar = {
   Wrapper: styled.nav`
     flex: 1;
+    font-family: 'Warnes', cursive;
 
     align-self: flex-start;
 
@@ -75,12 +76,11 @@ const Navbar = {
     justify-content: space-between;
     align-items: center;
 
-    background-color: rgba(52, 58, 64, 1);
-    color: white;
+    background-color: white;
+    color: black;
 
     position: fixed;
     width: 100vw;
-    height: 10%;
 
     margin: 0 auto;
 
@@ -92,9 +92,8 @@ const Navbar = {
     }
   `,
   Logo: styled.h1`
-    border: 1px solid gray;
     padding: 1rem 3rem;
-    color: white;
+    color: black;
 
     @media only screen and (max-width: 40em) {
       z-index: 999;
@@ -112,8 +111,8 @@ const Navbar = {
     flex-direction: row;
     justify-content: space-between;
 
-    background-color: rgba(52, 58, 64, 1);
-    color: white;
+    background-color: white;
+    color: black;
     padding: 1rem 3rem;
 
     transition: 0.2s ease-out;
@@ -122,9 +121,7 @@ const Navbar = {
       openDrawer ? `translateX(0)` : `translateX(100%)`};
 
     @media only screen and (max-width: 40em) {
-
       z-index: 1;
-    
 
       height: 100%;
       width: 100%;
@@ -136,8 +133,10 @@ const Navbar = {
       gap: 80px;
       margin-left: 50px;
 
-      background-color: rgba(52, 58, 64, 1);
+      background-color: white;
       padding: 1rem 2rem;
+
+      font-size: 1.5em;
 
       transition: 0.2s ease-out;
 
@@ -158,7 +157,7 @@ const Navbar = {
     font-size: 1.5em;
 
     padding: 1rem 0;
-    color: white;
+    color: black;
   `,
 };
 
@@ -206,7 +205,7 @@ const HamburgerButton = {
       display: block;
       content: "";
       width: 100%;
-      background-color: white;
+      background-color: black;
       position: absolute;
     }
 
@@ -267,7 +266,7 @@ const CloseButton = {
 const linkStyle = {
   margin: "1rem",
   textDecoration: "none",
-  color: "white",
+  color: "black",
 };
 
 const CloseStyle = {
