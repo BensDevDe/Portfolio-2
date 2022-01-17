@@ -3,27 +3,53 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import NavContext from "./context/NavContext";
 
+import { CgDarkMode } from "react-icons/cg";
+
+
+
+import { useTranslation } from "react-i18next";
+
 const NavbarNav = () => {
+  //NAVIGATION*****************************************************************
   const { openDrawerH, setOpenDrawerH } = useContext(NavContext);
-  // const [openDrawer, setOpenDrawer] = useState(false);
   const drawerRef = useRef(null);
 
   useEffect(() => {
-    /* Close the drawer when the user clicks outside of it __> MEANS????????????? */
     const closeDrawer = (event) => {
       if (drawerRef.current && drawerRef.current.contains(event.target)) {
         return;
       }
-
       setOpenDrawerH(true);
     };
-
     document.addEventListener("mousedown", closeDrawer);
     return () => document.removeEventListener("mousedown", closeDrawer);
-  }, []);
+  }, );
+
+  //DARKMODE**********************************************************
+  const [isDark, setIsDark] = useState(true);
+  const darkModeChange = () => {
+    setIsDark(!isDark);
+  };
+  useEffect(() => {
+    if (isDark) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [isDark]);
+
+  //TRANSLATION
+  const { t, i18n } = useTranslation("common");
+
   return (
     <Navbar.Wrapper>
-      <Navbar.Logo>BS</Navbar.Logo>
+      <Navbar.Logo>
+        <p>BS</p>
+        <CgDarkMode role="button" onClick={() => darkModeChange()}></CgDarkMode>
+
+        <button onClick={() => i18n.changeLanguage("de")}>de</button>
+        <button onClick={() => i18n.changeLanguage("en")}>en</button>
+      </Navbar.Logo>
 
       <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
         <HamburgerButton.Lines />
@@ -84,114 +110,107 @@ const Navbar = {
   Wrapper: styled.nav`
     flex: 1;
     align-self: flex-start;
+    color: var(--color-foreground);
+    background-color: var(--color-background);
 
     font-family: "Cairo", sans-serif;
     font-weight: 100;
-
-    padding: 1rem 3rem;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    background-color: white;
-
     position: fixed;
     width: 100vw;
-    height: 10%:
-
+    // height: 10%:
     margin: 0 auto;
+    padding: 1rem 3rem;
 
     @media only screen and (max-width: 60em) {
       height: 100vh;
       position: fixed;
       width: 100vw;
       bottom: 0;
-      width: 100vw;
+
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      color: black;
-
-    
     }
   `,
-  Logo: styled.h1`
-    padding: 1rem 3rem;
-    color: black;
+  Logo: styled.div`
+    width: 6em;
+    padding: 0 3rem;
+    color: var(--color-foreground);
+    background: var(--color-background);
+    font-size: 2em;
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
 
     @media only screen and (max-width: 60em) {
       z-index: 999;
     }
   `,
   Items: styled.ul`
-    display: flex;
     list-style: none;
-    width: 50vw;
+    background-color: var(--color-background);
 
+    width: 60vw;
     position: fixed;
     right: 0;
     top: 0;
 
-    flex-direction: row;
+    display: flex;
     justify-content: space-between;
-
-    background-color: white;
+    align-items: center;
 
     padding: 1rem 3rem;
 
     transition: 0.2s ease-out;
-
     transform: ${({ openDrawer }) =>
       openDrawer ? `translateX(0)` : `translateX(100%)`};
 
     @media only screen and (max-width: 60em) {
-      z-index: 1;
-      color: black;
+      font-size: 1.5em;
 
+      z-index: 1;
       height: 100%;
       width: 100%;
 
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-
       gap: 20px;
-      margin-left: 50px;
-
-      font-size: 1.5em;
 
       transition: 0.2s ease-out;
-
       transform: ${({ openDrawer }) =>
         openDrawer ? `translateX(0),` : `translateX(100%)`};
 
       ${({ openDrawer }) =>
         openDrawer &&
         `
-    height: 100%;
-    bottom: 0;
-  `}
+      height: 100%;
+      bottom: 0;
+      `}
     }
   `,
   Item: styled.a`
-    padding: 0 1rem;
     cursor: pointer;
     font-size: 1.5em;
-    color: black;
-
-    padding: 1rem 0;
+    color: var(--color-foreground);
   `,
 };
 
 const HamburgerButton = {
   Wrapper: styled.button`
-    height: 3rem;
-    width: 3rem;
+    height: 3em;
+    width: 3em;
     position: relative;
     font-size: 12px;
-    margin: 1rem 3rem;
-    color: black;
+    margin: 0.8em 3rem;
+    color: var(--color-foreground);
 
     display: none;
 
@@ -217,7 +236,7 @@ const HamburgerButton = {
   Lines: styled.div`
     top: 50%;
     margin-top: -0.125em;
-    color: black;
+    color: var(--color-background);
 
     &,
     &:after,
@@ -228,7 +247,7 @@ const HamburgerButton = {
       display: block;
       content: "";
       width: 100%;
-      background-color: black;
+      background-color: var(--color-foreground);
       position: absolute;
     }
 
@@ -246,42 +265,28 @@ const HamburgerButton = {
 
 const CloseButton = {
   Wrapper: styled.button`
-    height: 3rem;
-    width: 3rem;
+    cursor: pointer;
     position: relative;
-    font-size: 2.8rem;
-    color: white;
-
-    margin-top: 7px;
+    font-size: 3em;
+    margin-right: -1em;
+    color: var(--color-foreground);
 
     display: none;
 
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 
     /* Remove default button styles */
     border: none;
-    background: transparent;
+    background-color: transparent;
     outline: none;
-    margin-right: 15px;
-
-    cursor: pointer;
-
-    &:after {
-      content: "";
-      display: block;
-      position: absolute;
-      height: 150%;
-      width: 150%;
-      top: -25%;
-      left: -25%;
-    }
 
     @media only screen and (max-width: 60em) {
+      font-size: 1.5em;
       position: absolute;
-      left: 90%;
-      top: 95%;
+      bottom: 0.65em;
+      right: 2.9em;
     }
   `,
 };
@@ -289,11 +294,15 @@ const CloseButton = {
 const linkStyle = {
   margin: "1rem",
   textDecoration: "none",
-  color: "black",
+  color: "var(--color-foreground)",
 };
 
 const CloseStyle = {
-  color: "black",
+  color: "var(--color-foreground)",
+};
+
+const darkToggler = {
+  margin: "1em 3em",
 };
 
 export default NavbarNav;

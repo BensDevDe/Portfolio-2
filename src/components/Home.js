@@ -2,25 +2,30 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import NavContext from "./context/NavContext";
 
-import imgMain from "../bgimg/IMG_ME.jpeg";
+import {useTranslation} from "react-i18next";
+
+// import imgMain from "../bgimg/IMG_ME.jpeg";
 
 const Home = () => {
   const { openDrawerH } = useContext(NavContext);
   let display = openDrawerH === true ? "block" : "none !important";
 
+  const {t, i18n} = useTranslation('common');
+
   const HomePage = {
     Wrapper: styled.section`
       width: 100vw;
-      height: 90%;
+      height: 100%;
      
       display: flex;
       justify-content; center;
       align-items: center;
 
       position: absolute;
-      top: 10%;
+      top: 5%;
 
       @media only screen and (max-width: 60em) {
+        height: 95%;
         top: 0;
         display: ${display};
       }
@@ -30,7 +35,8 @@ const Home = () => {
       width: 100vw;
       height: 100%;
       font-size: 2em;
-      color: black;
+      color: var(--color-foreground);
+      background-color: var(--color-background);
      
       margin: 0 auto;
 
@@ -45,8 +51,8 @@ const Home = () => {
     <HomePage.Wrapper>
       <HomePage.Text>
         {" "}
-        <p>Ben Stautner</p>
-        <p>Web Development</p>{" "}
+        <p>{t('welcome.name')}</p>
+        <p>{t('welcome.title')}</p>{" "}
       </HomePage.Text>
     </HomePage.Wrapper>
   );

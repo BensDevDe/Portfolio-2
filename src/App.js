@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 
 import NavbarNav from "./components/NavbarNav";
 import Home from "./components/Home";
@@ -18,7 +18,7 @@ import data from "./projects-data.json";
 function App() {
   return (
     <NavState>
-      <BrowserRouter>
+      <HashRouter>
         <Styles.Wrapper>
           <CSSReset />
 
@@ -40,7 +40,7 @@ function App() {
 
           {/* <Footer /> */}
         </Styles.Wrapper>
-      </BrowserRouter>
+      </HashRouter>
     </NavState>
   );
 }
@@ -72,6 +72,20 @@ const CSSReset = createGlobalStyle`
   body {
     font-size: 1.4rem;
     font-family: sans-serif;  
+
+    --color-background: #FAFAFA;
+    --color-foreground: #1F2023;
+
+    &.dark {
+      --color-background: #1F2023;
+      --color-foreground: #EFEFEF;
+    }
+
+
+    @media (prefers-color-scheme: dark) {
+      --color-background: #1F2023;
+      --color-foreground: #EFEFEF;
+    }
   }
 `;
 
