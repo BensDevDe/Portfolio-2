@@ -12,18 +12,16 @@ const Home = () => {
     Wrapper: styled.section`
       width: 100vw;
       height: 90%;
-      // background-color: rgba(52, 58, 64, 1);
+     
 
-      color: black;
-
-      //    display: flex;
-      //    justify-content; center;
-      //    align-items: center;
+         display: flex;
+         justify-content; center;
+         align-items: center;
 
       position: absolute;
       top: 10%;
 
-      @media only screen and (max-width: 40em) {
+      @media only screen and (max-width: 60em) {
         top: 0;
         display: ${display};
       }
@@ -31,13 +29,13 @@ const Home = () => {
 
     Text: styled.div`
       width: 100vw;
-      height: 98%;
+      height: 100%;
       font-size: 2em;
       color: black;
-      border: 1px solid white;
-      background-image: url(${imgMain});
-      background-size: cover;
-      background-position: inherit;
+      border: 1px solid black;
+      // background-image: url(${imgMain});
+      // background-size: cover;
+      // background-position: inherit;
 
       margin: 0 auto;
 

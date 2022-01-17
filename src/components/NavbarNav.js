@@ -3,11 +3,9 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import NavContext from "./context/NavContext";
 
-import { VscEyeClosed } from "react-icons/vsc";
-
 const NavbarNav = () => {
   const { openDrawerH, setOpenDrawerH } = useContext(NavContext);
-  const [openDrawer, setOpenDrawer] = useState(false);
+  // const [openDrawer, setOpenDrawer] = useState(false);
   const drawerRef = useRef(null);
 
   useEffect(() => {
@@ -39,25 +37,41 @@ const NavbarNav = () => {
           X
         </CloseButton.Wrapper>
         <Navbar.Item>
-          <NavLink style={linkStyle} to="/">
+          <NavLink
+            style={linkStyle}
+            onClick={() => setOpenDrawerH(true)}
+            to="/"
+          >
             HOME
           </NavLink>
         </Navbar.Item>
         <Navbar.Item>
           {" "}
-          <NavLink style={linkStyle} to="/about">
+          <NavLink
+            style={linkStyle}
+            onClick={() => setOpenDrawerH(true)}
+            to="/about"
+          >
             ABOUT
           </NavLink>
         </Navbar.Item>
         <Navbar.Item>
           {" "}
-          <NavLink style={linkStyle} to="/projects">
+          <NavLink
+            style={linkStyle}
+            onClick={() => setOpenDrawerH(true)}
+            to="/projects"
+          >
             PROJECTS
           </NavLink>
         </Navbar.Item>
         <Navbar.Item>
           {" "}
-          <NavLink style={linkStyle} to="/contact">
+          <NavLink
+            style={linkStyle}
+            onClick={() => setOpenDrawerH(true)}
+            to="/contact"
+          >
             CONTACT
           </NavLink>
         </Navbar.Item>
@@ -69,10 +83,10 @@ const NavbarNav = () => {
 const Navbar = {
   Wrapper: styled.nav`
     flex: 1;
+    align-self: flex-start;
+
     font-family: "Cairo", sans-serif;
     font-weight: 100;
-
-    align-self: flex-start;
 
     padding: 1rem 3rem;
 
@@ -84,22 +98,30 @@ const Navbar = {
 
     position: fixed;
     width: 100vw;
+    height: 10%:
 
     margin: 0 auto;
 
-    @media only screen and (max-width: 40em) {
+    @media only screen and (max-width: 60em) {
       height: 100vh;
+      position: fixed;
+      width: 100vw;
+      bottom: 0;
+      width: 100vw;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      color: black;
+
+    
     }
   `,
   Logo: styled.h1`
     padding: 1rem 3rem;
     color: black;
 
-    @media only screen and (max-width: 40em) {
-      // z-index: 999;
+    @media only screen and (max-width: 60em) {
+      z-index: 999;
     }
   `,
   Items: styled.ul`
@@ -123,8 +145,9 @@ const Navbar = {
     transform: ${({ openDrawer }) =>
       openDrawer ? `translateX(0)` : `translateX(100%)`};
 
-    @media only screen and (max-width: 40em) {
-      // z-index: 1;
+    @media only screen and (max-width: 60em) {
+      z-index: 1;
+      color: black;
 
       height: 100%;
       width: 100%;
@@ -135,8 +158,6 @@ const Navbar = {
 
       gap: 20px;
       margin-left: 50px;
-
-      padding: 1rem 2rem;
 
       font-size: 1.5em;
 
@@ -157,6 +178,7 @@ const Navbar = {
     padding: 0 1rem;
     cursor: pointer;
     font-size: 1.5em;
+    color: black;
 
     padding: 1rem 0;
   `,
@@ -168,6 +190,8 @@ const HamburgerButton = {
     width: 3rem;
     position: relative;
     font-size: 12px;
+    margin: 1rem 3rem;
+    color: black;
 
     display: none;
 
@@ -188,14 +212,12 @@ const HamburgerButton = {
       width: 150%;
       top: -25%;
       left: -25%;
-
-      @media only screen and (max-width: 40em) {
-      }
     }
   `,
   Lines: styled.div`
     top: 50%;
     margin-top: -0.125em;
+    color: black;
 
     &,
     &:after,
@@ -256,7 +278,7 @@ const CloseButton = {
       left: -25%;
     }
 
-    @media only screen and (max-width: 40em) {
+    @media only screen and (max-width: 60em) {
       position: absolute;
       left: 90%;
       top: 95%;
@@ -275,9 +297,3 @@ const CloseStyle = {
 };
 
 export default NavbarNav;
-
-// @media only screen and (max-width: 40em) {
-//   position: fixed;
-//   width: 100vw;
-//   bottom: 0;
-// }
