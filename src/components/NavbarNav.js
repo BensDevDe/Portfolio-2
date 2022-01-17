@@ -32,8 +32,11 @@ const NavbarNav = () => {
       </HamburgerButton.Wrapper>
 
       <Navbar.Items ref={drawerRef} openDrawer={!openDrawerH}>
-        <CloseButton.Wrapper onClick={() => setOpenDrawerH(true)}>
-        X
+        <CloseButton.Wrapper
+          style={CloseStyle}
+          onClick={() => setOpenDrawerH(true)}
+        >
+          X
         </CloseButton.Wrapper>
         <Navbar.Item>
           <NavLink style={linkStyle} to="/">
@@ -66,7 +69,8 @@ const NavbarNav = () => {
 const Navbar = {
   Wrapper: styled.nav`
     flex: 1;
-    font-family: "Warnes", cursive;
+    font-family: "Cairo", sans-serif;
+    font-weight: 100;
 
     align-self: flex-start;
 
@@ -77,7 +81,6 @@ const Navbar = {
     align-items: center;
 
     background-color: white;
-    color: black;
 
     position: fixed;
     width: 100vw;
@@ -96,7 +99,7 @@ const Navbar = {
     color: black;
 
     @media only screen and (max-width: 40em) {
-      z-index: 999;
+      // z-index: 999;
     }
   `,
   Items: styled.ul`
@@ -112,7 +115,7 @@ const Navbar = {
     justify-content: space-between;
 
     background-color: white;
-    color: black;
+
     padding: 1rem 3rem;
 
     transition: 0.2s ease-out;
@@ -121,7 +124,7 @@ const Navbar = {
       openDrawer ? `translateX(0)` : `translateX(100%)`};
 
     @media only screen and (max-width: 40em) {
-      z-index: 1;
+      // z-index: 1;
 
       height: 100%;
       width: 100%;
@@ -130,10 +133,9 @@ const Navbar = {
       justify-content: center;
       align-items: center;
 
-      gap: 80px;
+      gap: 20px;
       margin-left: 50px;
 
-      background-color: white;
       padding: 1rem 2rem;
 
       font-size: 1.5em;
@@ -157,7 +159,6 @@ const Navbar = {
     font-size: 1.5em;
 
     padding: 1rem 0;
-    color: black;
   `,
 };
 
@@ -227,7 +228,7 @@ const CloseButton = {
     width: 3rem;
     position: relative;
     font-size: 2.8rem;
-    color: black;
+    color: white;
 
     margin-top: 7px;
 
