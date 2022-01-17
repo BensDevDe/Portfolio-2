@@ -13,10 +13,9 @@ const Home = () => {
       width: 100vw;
       height: 90%;
      
-
-         display: flex;
-         justify-content; center;
-         align-items: center;
+      display: flex;
+      justify-content; center;
+      align-items: center;
 
       position: absolute;
       top: 10%;
@@ -32,11 +31,7 @@ const Home = () => {
       height: 100%;
       font-size: 2em;
       color: black;
-      border: 1px solid black;
-      // background-image: url(${imgMain});
-      // background-size: cover;
-      // background-position: inherit;
-
+     
       margin: 0 auto;
 
       display: flex;
