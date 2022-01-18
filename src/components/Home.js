@@ -15,20 +15,16 @@ const Home = () => {
   const HomePage = {
     Wrapper: styled.section`
       width: 100vw;
-      height: 100%;
+      height: 100vh;
       
-     
       display: flex;
-      justify-content; center;
+      justify-content: center;
       align-items: center;
-
-      
-
-      position: absolute;
-      top: 5%;
 
       @media only screen and (max-width: 60em) {
         height: 90%;
+        position: absolute;
+     
         top: 0;
         display: ${display};
       }
@@ -38,7 +34,7 @@ const Home = () => {
       width: 100vw;
       height: 100%;
 
-      padding: 0px 20vw;
+      padding: 0 10vw;
       color: var(--color-foreground);
       background-color: var(--color-background);
 
@@ -49,8 +45,12 @@ const Home = () => {
     `,
 
     Item: styled.p`
-      font-size: 2em;
-      font-weight: 100;
+      font-size: 9em;
+
+      @media only screen and (max-width: 60em) {
+        font-size: 4em;
+      }
+     
     `,
   };
 

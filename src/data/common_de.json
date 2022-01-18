@@ -57,5 +57,14 @@
       "technologies": "JS Vanilla, SASS, HTML",
       "launch": "-"
     }
-  ]
+  ],
+
+  "contact": {
+    "title": "GET IN TOUCH",
+    "contactName": "IHR NAME",
+    "contactMail": "IHRE EMAIL",
+    "contactSubject": "BETREFF",
+    "contactMessage": "NACHRICHT",
+    "contactSend": "SENDEN"
+  }
 }

@@ -71,7 +71,8 @@ const CSSReset = createGlobalStyle`
 
   body {
     font-size: 1.4rem;
-    font-family: sans-serif;  
+    font-family: "Cairo", sans-serif;
+    font-weight: 100;
 
     --color-background: #FAFAFA;
     --color-foreground: #1F2023;

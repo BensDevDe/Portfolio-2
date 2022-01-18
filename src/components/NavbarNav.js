@@ -127,8 +127,8 @@ const Navbar = {
     color: var(--color-foreground);
     background-color: var(--color-background);
 
-    font-family: "Cairo", sans-serif;
-    font-weight: 100;
+  
+   
 
     display: flex;
     justify-content: space-between;
@@ -136,7 +136,7 @@ const Navbar = {
 
     position: fixed;
     width: 100vw;
-    height: 10%;
+    height: 10em;
     margin: 0 auto;
     padding: 1rem 3rem;
 
@@ -290,7 +290,7 @@ const CloseButton = {
     margin-right: -1em;
     color: var(--color-foreground);
 
-    display: none;
+
 
     display: flex;
     justify-content: center;
@@ -300,6 +300,9 @@ const CloseButton = {
     border: none;
     background-color: transparent;
     outline: none;
+    content: "";
+
+   
 
     @media only screen and (max-width: 60em) {
       font-size: 1.5em;
