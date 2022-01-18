@@ -76,9 +76,11 @@ const Contact = () => {
 
   //Translation**********************************************************************
 
-  const { t, i18n } = useTranslation("common");
+  const { t } = useTranslation("common");
 
-  //Styled Components*****************************************************************++++
+  //Styled Components****************************************************************
+
+  // Contact Page****
 
   const ContactPage = {
     Wrapper: styled.section`
@@ -102,9 +104,13 @@ const Contact = () => {
       }
     `,
 
+    // Contact Form Container
+
     FormContainer: styled.div`
       width: 50%;
     `,
+
+    // Form
 
     Form: styled.form`
       display: flex;
@@ -112,6 +118,8 @@ const Contact = () => {
       justify-content: center;
       align-items: center;
     `,
+
+    // Input Container
 
     InputContainer: styled.div`
       width: 60%;
@@ -130,6 +138,8 @@ const Contact = () => {
       width: 30em;
     `,
 
+    // Select
+
     Select: styled.select`
       background-color: transparent;
       border: none;
@@ -143,6 +153,8 @@ const Contact = () => {
       color: var(--color-foreground);
     `,
 
+    // Textarea
+
     TextAreaContainer: styled.div`
       width: 60%;
       display: flex;
@@ -154,10 +166,14 @@ const Contact = () => {
     TextArea: styled.textarea`
       width: 100%;
       height: 20em;
+      color: var(--color-foreground);
       margin-top: 10px;
 
       background-color: transparent;
+      border-radius: 3px;
     `,
+
+    //Button
 
     SubmitButton: styled.button`
       /* position: absolute;
@@ -165,13 +181,15 @@ const Contact = () => {
       left: 38%; */
 
       margin-left: 55%;
-     border: none;
+      border: none;
       background-color: transparent;
       color: var(--color-foreground);
 
       width: 60px;
       height: 20px;
     `,
+
+    //Link Container******************************************************************************************************************
 
     LinkContainer: styled.div``,
   };
@@ -243,7 +261,7 @@ const Contact = () => {
           </ContactPage.TextAreaContainer>
 
           <ContactPage.SubmitButton type="submit">
-          {t("contact.contactSend")}
+            {t("contact.contactSend")}
           </ContactPage.SubmitButton>
         </ContactPage.Form>
       </ContactPage.FormContainer>

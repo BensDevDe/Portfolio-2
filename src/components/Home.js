@@ -10,7 +10,7 @@ const Home = () => {
   const { openDrawerH } = useContext(NavContext);
   let display = openDrawerH === true ? "block" : "none !important";
 
-  const { t, i18n } = useTranslation("common");
+  const { t } = useTranslation("common");
 
   const HomePage = {
     Wrapper: styled.section`
