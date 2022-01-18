@@ -42,22 +42,28 @@ const NavbarNav = () => {
   return (
     <Navbar.Wrapper>
       <Navbar.Logo>
-        <p>BS</p>
-        <CgDarkMode role="button" onClick={() => darkModeChange()}></CgDarkMode>
-        {/* <div>
-          {" "}
-          <button onClick={() => i18n.changeLanguage("de")}>de</button>
-          <button onClick={() => i18n.changeLanguage("en")}>en</button>
-        </div> */}
-      </Navbar.Logo>
+        <NavLink style={linkStyle} onClick={() => setOpenDrawerH(true)} to="/">
+          BS
+        </NavLink>
 
-      {/* <LanguageContainer.Wrapper name="language"> */}
-      {/* </form>    <form action=""> */}
-      <select onChange={(e) => i18n.changeLanguage(e.target.value)}>
-        <option value="en">EN</option>
-        <option value="de">DE</option>
-      </select>
-      {/* </LanguageContainer.Wrapper> */}
+        <div style={SwitchContainer}>
+          <CgDarkMode
+            role="button"
+            onClick={() => darkModeChange()}
+          ></CgDarkMode>
+          <select
+            style={SwitchLanguage}
+            onChange={(e) => i18n.changeLanguage(e.target.value)}
+          >
+            <option style={LanguageOption} value="en">
+              EN
+            </option>
+            <option style={LanguageOption} value="de">
+              DE
+            </option>
+          </select>
+        </div>
+      </Navbar.Logo>
 
       <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
         <HamburgerButton.Lines />
@@ -126,19 +132,21 @@ const Navbar = {
 
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
     position: fixed;
     width: 100vw;
-    height: 10%:
+    height: 10%;
     margin: 0 auto;
     padding: 1rem 3rem;
 
     @media only screen and (max-width: 60em) {
       height: 100vh;
+      width: 100vw;
       position: fixed;
       width: 100vw;
       bottom: 0;
+      padding: 1rem 0.5rem;
 
       display: flex;
       justify-content: space-between;
@@ -146,7 +154,7 @@ const Navbar = {
     }
   `,
   Logo: styled.div`
-    width: 8em;
+    width: 11em;
     padding: 0 3rem;
     color: var(--color-foreground);
     background: var(--color-background);
@@ -159,12 +167,14 @@ const Navbar = {
     align-items: center;
 
     @media only screen and (max-width: 60em) {
+      width: 8em;
       z-index: 999;
     }
   `,
   Items: styled.ul`
     list-style: none;
     background-color: var(--color-background);
+    margin-top: 19px;
 
     width: 60vw;
     position: fixed;
@@ -175,15 +185,15 @@ const Navbar = {
     justify-content: space-between;
     align-items: center;
 
-    padding: 1rem 3rem;
+    padding: 0rem 3rem;
 
-    transition: 0.2s ease-out;
+    transition: 0.25s ease-out;
     transform: ${({ openDrawer }) =>
       openDrawer ? `translateX(0)` : `translateX(100%)`};
 
     @media only screen and (max-width: 60em) {
       font-size: 1.5em;
-
+      margin-top: 0px;
       z-index: 1;
       height: 100%;
       width: 100%;
@@ -192,7 +202,7 @@ const Navbar = {
       justify-content: center;
       gap: 20px;
 
-      transition: 0.2s ease-out;
+      transition: 0.25s ease-out;
       transform: ${({ openDrawer }) =>
         openDrawer ? `translateX(0),` : `translateX(100%)`};
 
@@ -206,13 +216,9 @@ const Navbar = {
   `,
   Item: styled.li`
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 1.4em;
     color: var(--color-foreground);
   `,
-};
-
-const LanguageContainer = {
-  Wrapper: styled.select``,
 };
 
 const HamburgerButton = {
@@ -279,7 +285,8 @@ const CloseButton = {
   Wrapper: styled.button`
     cursor: pointer;
     position: relative;
-    font-size: 3em;
+    font-size: 1.5em;
+    font-weight: 100;
     margin-right: -1em;
     color: var(--color-foreground);
 
@@ -304,7 +311,8 @@ const CloseButton = {
 };
 
 const linkStyle = {
-  margin: "1rem",
+  fontSize: "1.1em",
+
   textDecoration: "none",
   color: "var(--color-foreground)",
 };
@@ -313,8 +321,25 @@ const CloseStyle = {
   color: "var(--color-foreground)",
 };
 
-const darkToggler = {
-  margin: "1em 3em",
+const SwitchContainer = {
+  width: "4em",
+
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+};
+
+const SwitchLanguage = {
+  backgroundColor: "transparent",
+  color: "var(--color-foreground)",
+  border: "none",
+  outline: "none",
+  cursor: "pointer",
+};
+
+const LanguageOption = {
+  backgroundColor: "var(--color-background)",
+  color: "var(--color-foreground)",
 };
 
 export default NavbarNav;
