@@ -5,8 +5,6 @@ import NavContext from "./context/NavContext";
 
 import { CgDarkMode } from "react-icons/cg";
 
-
-
 import { useTranslation } from "react-i18next";
 
 const NavbarNav = () => {
@@ -23,7 +21,7 @@ const NavbarNav = () => {
     };
     document.addEventListener("mousedown", closeDrawer);
     return () => document.removeEventListener("mousedown", closeDrawer);
-  }, );
+  });
 
   //DARKMODE**********************************************************
   const [isDark, setIsDark] = useState(true);
@@ -46,10 +44,20 @@ const NavbarNav = () => {
       <Navbar.Logo>
         <p>BS</p>
         <CgDarkMode role="button" onClick={() => darkModeChange()}></CgDarkMode>
-
-        <button onClick={() => i18n.changeLanguage("de")}>de</button>
-        <button onClick={() => i18n.changeLanguage("en")}>en</button>
+        {/* <div>
+          {" "}
+          <button onClick={() => i18n.changeLanguage("de")}>de</button>
+          <button onClick={() => i18n.changeLanguage("en")}>en</button>
+        </div> */}
       </Navbar.Logo>
+
+      {/* <LanguageContainer.Wrapper name="language"> */}
+      {/* </form>    <form action=""> */}
+      <select onChange={(e) => i18n.changeLanguage(e.target.value)}>
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+      </select>
+      {/* </LanguageContainer.Wrapper> */}
 
       <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
         <HamburgerButton.Lines />
@@ -122,7 +130,7 @@ const Navbar = {
 
     position: fixed;
     width: 100vw;
-    // height: 10%:
+    height: 10%:
     margin: 0 auto;
     padding: 1rem 3rem;
 
@@ -138,7 +146,7 @@ const Navbar = {
     }
   `,
   Logo: styled.div`
-    width: 6em;
+    width: 8em;
     padding: 0 3rem;
     color: var(--color-foreground);
     background: var(--color-background);
@@ -196,11 +204,15 @@ const Navbar = {
       `}
     }
   `,
-  Item: styled.a`
+  Item: styled.li`
     cursor: pointer;
     font-size: 1.5em;
     color: var(--color-foreground);
   `,
+};
+
+const LanguageContainer = {
+  Wrapper: styled.select``,
 };
 
 const HamburgerButton = {

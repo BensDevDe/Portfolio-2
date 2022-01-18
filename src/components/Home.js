@@ -25,7 +25,7 @@ const Home = () => {
       top: 5%;
 
       @media only screen and (max-width: 60em) {
-        height: 95%;
+        height: 90%;
         top: 0;
         display: ${display};
       }
