@@ -1,5 +1,7 @@
 import React from "react";
 
+import AnimatedPage from "./AnimatedPage";
+
 import { FaArrowRight, FaArrowLeft, FaSass } from "react-icons/fa";
 import {
   SiJavascript,
@@ -16,6 +18,7 @@ import { DiScrum } from "react-icons/di";
 
 const About = () => {
   return (
+    <AnimatedPage>
     <div>
       <SiJavascript />
       <span>Javascript</span>
@@ -50,6 +53,7 @@ const About = () => {
       <SiFigma />
       <span>FIGMA</span>
     </div>
+    </AnimatedPage>
   );
 
 

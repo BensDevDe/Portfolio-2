@@ -8,6 +8,8 @@ import { CgDarkMode } from "react-icons/cg";
 import { useTranslation } from "react-i18next";
 
 const NavbarNav = () => {
+
+
   //NAVIGATION*****************************************************************
   const { openDrawerH, setOpenDrawerH } = useContext(NavContext);
   const drawerRef = useRef(null);
@@ -37,7 +39,7 @@ const NavbarNav = () => {
   }, [isDark]);
 
   //TRANSLATION
-  const { t, i18n } = useTranslation("common");
+  const { i18n } = useTranslation("common");
 
   return (
     <Navbar.Wrapper>
@@ -46,11 +48,8 @@ const NavbarNav = () => {
           BS
         </NavLink>
 
-        <div style={SwitchContainer}>
-          <CgDarkMode
-            role="button"
-            onClick={() => darkModeChange()}
-          ></CgDarkMode>
+        <SwitchContainer.Wrapper>
+          <CgDarkMode role="button" onClick={() => darkModeChange()} />
           <select
             style={SwitchLanguage}
             onChange={(e) => i18n.changeLanguage(e.target.value)}
@@ -62,7 +61,7 @@ const NavbarNav = () => {
               DE
             </option>
           </select>
-        </div>
+        </SwitchContainer.Wrapper>
       </Navbar.Logo>
 
       <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
@@ -127,9 +126,6 @@ const Navbar = {
     color: var(--color-foreground);
     background-color: var(--color-background);
 
-  
-   
-
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -139,6 +135,8 @@ const Navbar = {
     height: 10em;
     margin: 0 auto;
     padding: 1rem 3rem;
+
+    border-bottom: 10px solid var(--color-background);
 
     @media only screen and (max-width: 60em) {
       height: 100vh;
@@ -290,8 +288,6 @@ const CloseButton = {
     margin-right: -1em;
     color: var(--color-foreground);
 
-
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -302,14 +298,23 @@ const CloseButton = {
     outline: none;
     content: "";
 
-   
-
     @media only screen and (max-width: 60em) {
       font-size: 1.5em;
       position: absolute;
       bottom: 0.65em;
       right: 2.9em;
     }
+  `,
+};
+
+const SwitchContainer = {
+  Wrapper: styled.div`
+    width: "4em";
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
   `,
 };
 
@@ -322,14 +327,6 @@ const linkStyle = {
 
 const CloseStyle = {
   color: "var(--color-foreground)",
-};
-
-const SwitchContainer = {
-  width: "4em",
-
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
 };
 
 const SwitchLanguage = {

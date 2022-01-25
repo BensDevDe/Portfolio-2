@@ -4,27 +4,26 @@ import styled from "styled-components";
 const Footer = () => {
   return (
     <FooterPage.Wrapper>
-      <FooterPage.Box></FooterPage.Box>
+      <FooterPage.Box>webogies.com</FooterPage.Box>
     </FooterPage.Wrapper>
   );
 };
 
 const FooterPage = {
   Wrapper: styled.section`
-
-
     width: 100vw;
-    height: 5%;
-    background-color: rgba(52, 58, 64, 1);
-  
 
-  
+    position: fixed;
+    bottom: 0;
+
+    @media only screen and (max-width: 60em) {
+      display: none;
+    }
   `,
 
   Box: styled.div`
-    color: white;
-    border: 1px solid white;
-    background-color: black;
+    color: var(--color-foreground);
+    background-color: var(--color-background);
 
     display: flex;
     justify-content: center;

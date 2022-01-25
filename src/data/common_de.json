@@ -61,10 +61,14 @@
 
   "contact": {
     "title": "GET IN TOUCH",
-    "contactName": "IHR NAME",
-    "contactMail": "IHRE EMAIL",
+    "contactName": "NAME",
+    "contactMail": "EMAIL",
     "contactSubject": "BETREFF",
     "contactMessage": "NACHRICHT",
-    "contactSend": "SENDEN"
+    "contactSend": "SENDEN",
+    "thanksText": "VIELEN DANK FÜR IHRE NACHRICHT! ",
+    "backButton": "Zurück",
+    "confirmButton": "Bestätigen",
+    "continueButton": "Weiter"
   }
 }
