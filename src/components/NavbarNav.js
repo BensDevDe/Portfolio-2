@@ -8,8 +8,6 @@ import { CgDarkMode } from "react-icons/cg";
 import { useTranslation } from "react-i18next";
 
 const NavbarNav = () => {
-
-
   //NAVIGATION*****************************************************************
   const { openDrawerH, setOpenDrawerH } = useContext(NavContext);
   const drawerRef = useRef(null);
@@ -125,34 +123,35 @@ const Navbar = {
     align-self: flex-start;
     color: var(--color-foreground);
     background-color: var(--color-background);
+    border: 5px solid var(--color-foreground);
+    border-bottom: none;
 
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 
-    position: fixed;
+    position: absolute;
     width: 100vw;
-    height: 10em;
+    height: 10%;
     margin: 0 auto;
     padding: 1rem 3rem;
 
-    border-bottom: 10px solid var(--color-background);
-
     @media only screen and (max-width: 60em) {
-      height: 100vh;
       width: 100vw;
       position: fixed;
-      width: 100vw;
+
       bottom: 0;
       padding: 1rem 0.5rem;
 
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
+
+      border: 5px solid var(--color-foreground);
+      border-top: none;
     }
   `,
   Logo: styled.div`
     width: 11em;
+
     padding: 0 3rem;
     color: var(--color-foreground);
     background: var(--color-background);
@@ -165,8 +164,8 @@ const Navbar = {
     align-items: center;
 
     @media only screen and (max-width: 60em) {
+      height: 10%;
       width: 8em;
-      z-index: 999;
     }
   `,
   Items: styled.ul`
@@ -193,21 +192,23 @@ const Navbar = {
       font-size: 1.5em;
       margin-top: 0px;
       z-index: 1;
-      height: 100%;
+      /* height: 100vh; */
       width: 100%;
 
       flex-direction: column;
       justify-content: center;
       gap: 20px;
 
-      transition: 0.25s ease-out;
+      border: 2px solid var(--color-foreground);
+
+      transition: 0.3s ease-out;
       transform: ${({ openDrawer }) =>
         openDrawer ? `translateX(0),` : `translateX(100%)`};
 
       ${({ openDrawer }) =>
         openDrawer &&
         `
-      height: 100%;
+      height: 100vh;
       bottom: 0;
       `}
     }
@@ -227,8 +228,6 @@ const HamburgerButton = {
     font-size: 12px;
     margin: 0.8em 3rem;
     color: var(--color-foreground);
-
-    display: none;
 
     display: block;
 

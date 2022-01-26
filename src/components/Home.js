@@ -22,12 +22,23 @@ const Home = () => {
       justify-content: center;
       align-items: center;
 
+      border: 5px solid var(--color-foreground);
+
       @media only screen and (max-width: 60em) {
-        height: 90%;
-        position: absolute;
+    
+      
+        /* position: absolute;
 
         top: 0;
-        display: ${display};
+        display: ${display}; */
+
+        ${({ display }) =>
+        display &&
+        `
+    display: flex !important;
+ 
+
+    `}
       }
     `,
 
@@ -67,13 +78,12 @@ const Home = () => {
         }
       }
     `,
-
     Item: styled.p`
       font-size: 9em;
       height: 100px;
 
       @media only screen and (max-width: 60em) {
-        font-size: 3em;
+        font-size: 2em;
         height: 50px;
       }
     `,

@@ -70,22 +70,25 @@ const CSSReset = createGlobalStyle`
   }  
 
   body {
+    height: 100%;
     font-size: 1.4rem;
     font-family: "Cairo", sans-serif;
     font-weight: 100;
 
-    --color-background: #e6ebe0;
+   
+
+    --color-background: #f5ebe0;
     --color-foreground: #1F2023;
 
     &.dark {
       --color-background: #1F2023;
-      --color-foreground: #e6ebe0;
+      --color-foreground: #f5ebe0;
     }
 
 
     /* @media (prefers-color-scheme: dark) {
       --color-background: #1F2023;
-      --color-foreground: #EFEFEF;
+      --color-foreground: #f5ebe0;
     } */
   }
 `;

@@ -16,6 +16,9 @@ const FooterPage = {
     position: fixed;
     bottom: 0;
 
+    border: 5px solid var(--color-foreground);
+    border-top: none;
+
     @media only screen and (max-width: 60em) {
       display: none;
     }
