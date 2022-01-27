@@ -4,12 +4,11 @@ import NavContext from "./context/NavContext";
 
 import { useTranslation } from "react-i18next";
 import AnimatedPage from "./AnimatedPage";
-
-// import imgMain from "../bgimg/IMG_ME.jpeg";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const { openDrawerH } = useContext(NavContext);
-  let display = openDrawerH === true ? "block" : "none !important";
+  // let display = openDrawerH === true ? "block" : "none !important";
 
   const { t } = useTranslation("common");
 
@@ -25,19 +24,10 @@ const Home = () => {
       border: 5px solid var(--color-foreground);
 
       @media only screen and (max-width: 60em) {
-    
-      
-        /* position: absolute;
-
-        top: 0;
-        display: ${display}; */
-
         ${({ display }) =>
-        display &&
-        `
+          display &&
+          `
     display: flex !important;
- 
-
     `}
       }
     `,
@@ -54,36 +44,13 @@ const Home = () => {
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-
-      animation-name: blackWhite;
-      animation-iteration-count: 1;
-      animation-duration: 3s;
-
-      @keyframes blackWhite {
-        0% {
-          background-color: var(--color-background);
-          color: var(--color-foreground);
-        }
-        50% {
-          background-color: var(--color-background);
-          color: var(--color-foreground);
-        }
-        51% {
-          background-color: var(--color-foreground);
-          color: var(--color-background);
-        }
-        100% {
-          background-color: var(--color-foreground);
-          color: var(--color-background);
-        }
-      }
     `,
     Item: styled.p`
       font-size: 9em;
       height: 100px;
 
       @media only screen and (max-width: 60em) {
-        font-size: 2em;
+        font-size: 1.7em;
         height: 50px;
       }
     `,
@@ -100,21 +67,37 @@ const Home = () => {
           opacity: 1;
         }
       }
+
+      @media only screen and (max-width: 60em) {
+        ${({ display }) =>
+          display &&
+          `
+    display: none;
+    `}
+      }
     `,
   };
 
   return (
     <AnimatedPage>
-    <HomePage.Wrapper>
-      <HomePage.Text>
-        {" "}
-        <HomePage.Item>{t("welcome.name")}</HomePage.Item>
-        <HomePage.Item>
-          {t("welcome.title")}
-          <HomePage.Blink>|</HomePage.Blink>
-        </HomePage.Item>{" "}
-      </HomePage.Text>
-    </HomePage.Wrapper>
+      <HomePage.Wrapper>
+        <HomePage.Text>
+          {" "}
+          <motion.div
+            animate={{
+              fontSize: ["0%", "50%", "75%", "120%", "100%"],
+
+              transition: { duration: 0.4, delay: 1 },
+            }}
+          >
+            <HomePage.Item>{t("welcome.name")}</HomePage.Item>
+            <HomePage.Item>
+              {t("welcome.title")}
+              <HomePage.Blink>|</HomePage.Blink>
+            </HomePage.Item>{" "}
+          </motion.div>
+        </HomePage.Text>
+      </HomePage.Wrapper>
     </AnimatedPage>
   );
 };

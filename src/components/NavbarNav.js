@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 import NavContext from "./context/NavContext";
 
 import { CgDarkMode } from "react-icons/cg";
-
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const NavbarNav = () => {
   //NAVIGATION*****************************************************************
@@ -43,7 +43,7 @@ const NavbarNav = () => {
     <Navbar.Wrapper>
       <Navbar.Logo>
         <NavLink style={linkStyle} onClick={() => setOpenDrawerH(true)} to="/">
-          BS
+          BS{" "}
         </NavLink>
 
         <SwitchContainer.Wrapper>
@@ -61,11 +61,17 @@ const NavbarNav = () => {
           </select>
         </SwitchContainer.Wrapper>
       </Navbar.Logo>
-
-      <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
-        <HamburgerButton.Lines />
-      </HamburgerButton.Wrapper>
-
+      <motion.div
+        animate={{
+          y: [-1400, -20, -20, 20, -20, 0, 20, 0],
+          transition: { duration: 0.5, delay: 2 }
+          
+        }}
+      >
+        <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
+          <HamburgerButton.Lines />
+        </HamburgerButton.Wrapper>
+      </motion.div>
       <Navbar.Items ref={drawerRef} openDrawer={!openDrawerH}>
         <CloseButton.Wrapper
           style={CloseStyle}
@@ -152,7 +158,7 @@ const Navbar = {
   Logo: styled.div`
     width: 11em;
 
-    padding: 0 3rem;
+    padding-left: 3rem;
     color: var(--color-foreground);
     background: var(--color-background);
     font-size: 2em;
@@ -192,7 +198,7 @@ const Navbar = {
       font-size: 1.5em;
       margin-top: 0px;
       z-index: 1;
-      /* height: 100vh; */
+      height: 100vh;
       width: 100%;
 
       flex-direction: column;
@@ -300,7 +306,7 @@ const CloseButton = {
     @media only screen and (max-width: 60em) {
       font-size: 1.5em;
       position: absolute;
-      bottom: 0.65em;
+      bottom: 5em;
       right: 2.9em;
     }
   `,

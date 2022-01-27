@@ -253,7 +253,7 @@ const Contact = () => {
 const ContactPage = {
   Wrapper: styled.section`
     width: 100vw;
-    height: 130%;
+    height: 100vh;
     font-size: 1.4em;
 
     color: var(--color-foreground);
@@ -266,7 +266,8 @@ const ContactPage = {
     @media only screen and (max-width: 60em) {
       font-size: 1em;
       display: none;
-     
+      height: 150%;
+
       flex-direction: column;
       justify-content: center;
 
@@ -314,7 +315,7 @@ const ContactPage = {
     margin-bottom: 5vh;
 
     @media only screen and (max-width: 60em) {
-      font-size: 3em;
+      font-size: 2em;
       margin-top: -50px;
       margin-bottom: 3.2vh;
     }
@@ -343,10 +344,15 @@ const ContactPage = {
     background-color: transparent;
     color: var(--color-foreground);
     border: none;
+    outline: none;
     border-bottom: 1px solid var(--color-foreground);
     &:focus {
       outline: none;
       background-color: var(--color-background);
+    }
+
+    @media only screen and (max-width: 60em) {
+      width: 80%;
     }
   `,
   // Select
@@ -391,13 +397,15 @@ const ContactPage = {
     font-family: "Cairo", sans-serif;
     font-weight: 100;
     font-size: 2rem;
+
+    overflow: auto;
     &:focus {
       outline: none;
       box-shadow: 0px 0px 10px red;
       background-color: var(--color-background);
     }
     @media only screen and (max-width: 60em) {
-      height: 200px;
+      height: 150px;
       margin-top: 10px;
     }
   `,
@@ -522,7 +530,7 @@ const ContactPage = {
     height: 15em;
     border: 1px solid var(--color-foreground);
     padding: 1rem 2rem;
-    overflow: scroll;
+    overflow: auto;
 
     @media only screen and (max-width: 60em) {
     }
@@ -716,10 +724,11 @@ const ContactPage = {
     justify-content: space-between;
     gap: 40px;
     @media only screen and (max-width: 60em) {
-      width: 90%;
-      gap: 5px;
+      width: 70%;
+      gap: 3px;
       height: 100%;
       margin-top: 20px;
+   
     }
   `,
   LinkElement: styled.a`
@@ -751,7 +760,7 @@ const ContactPage = {
       }
     }
     @media only screen and (max-width: 60em) {
-      font-size: 3rem;
+      font-size: 2rem;
     }
   `,
 };
