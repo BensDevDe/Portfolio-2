@@ -198,7 +198,7 @@ const Navbar = {
       font-size: 1.5em;
       margin-top: 0px;
       z-index: 1;
-      height: 100vh;
+      height: 100%;
       width: 100%;
 
       flex-direction: column;
@@ -214,7 +214,7 @@ const Navbar = {
       ${({ openDrawer }) =>
         openDrawer &&
         `
-      height: 100vh;
+      height: 100%;
       bottom: 0;
       `}
     }
@@ -306,7 +306,7 @@ const CloseButton = {
     @media only screen and (max-width: 60em) {
       font-size: 1.5em;
       position: absolute;
-      bottom: 5em;
+      bottom: 0.65em;
       right: 2.9em;
     }
   `,

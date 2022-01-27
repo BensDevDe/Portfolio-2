@@ -266,7 +266,7 @@ const ContactPage = {
     @media only screen and (max-width: 60em) {
       font-size: 1em;
       display: none;
-      height: 150%;
+      height: 200%;
 
       flex-direction: column;
       justify-content: center;
@@ -290,6 +290,7 @@ const ContactPage = {
 
     @media only screen and (max-width: 60em) {
       flex-direction: column;
+      margin-top: -70px;
     }
   `,
   // Contact Form Container
@@ -484,6 +485,8 @@ const ContactPage = {
     display: flex;
     `}
     @media only screen and (max-width: 60em) {
+      width: 80vw;
+      height: 60vh;
     }
   `,
   // TEXT FIELD
@@ -501,6 +504,7 @@ const ContactPage = {
     padding: 1em 1.5em;
 
     @media only screen and (max-width: 60em) {
+      width: 80vw;
     }
   `,
   TextDiv: styled.div`
@@ -515,6 +519,8 @@ const ContactPage = {
       width: 90%;
     }
     @media only screen and (max-width: 60em) {
+
+     width: 60vw;
     }
   `,
   TextPH: styled.p`
@@ -546,6 +552,10 @@ const ContactPage = {
 
     margin: 0 auto;
     margin-bottom: 40px;
+
+    @media only screen and (max-width: 60em) {
+      margin-bottom: 100px;
+    }
   `,
 
   ConfirmationButton: styled.button`
@@ -728,7 +738,6 @@ const ContactPage = {
       gap: 3px;
       height: 100%;
       margin-top: 20px;
-   
     }
   `,
   LinkElement: styled.a`
