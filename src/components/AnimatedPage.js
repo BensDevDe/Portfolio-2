@@ -2,9 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const animations = {
-  initial: { opacity: 1, x: 800},
-  animate: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: -800 },
+  initial: { opacity: 1, x: 0, y: 800 },
+  animate: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: 0, y: -800 },
 };
 
 const AnimatedPage = ({ children }) => {
@@ -14,7 +14,7 @@ const AnimatedPage = ({ children }) => {
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ ease: "easeOut", duration: 0.3 }}
+      transition={{ ease: "easeInOut", duration: 0.4 }}
     >
       {children}
     </motion.div>

@@ -63,9 +63,8 @@ const NavbarNav = () => {
       </Navbar.Logo>
       <motion.div
         animate={{
-          y: [-1400, -20, -20, 20, -20, 0, 20, 0],
-          transition: { duration: 0.5, delay: 2 }
-          
+          y: [-1400, 6400, -20, -20, 20, -20, 0, 20, 0],
+          transition: { duration: 0.5, delay: 2 },
         }}
       >
         <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
@@ -79,15 +78,23 @@ const NavbarNav = () => {
         >
           X
         </CloseButton.Wrapper>
-        <Navbar.Item>
-          <NavLink
-            style={linkStyle}
-            onClick={() => setOpenDrawerH(true)}
-            to="/"
-          >
-            HOME
-          </NavLink>
-        </Navbar.Item>
+        <motion.div
+          animate={{
+            x: [-140, -20, -20, 20, -20, 0, 20, 0],
+         
+            transition: { duration: 0.5, delay: 2 },
+          }}
+        >
+          <Navbar.Item>
+            <NavLink
+              style={linkStyle}
+              onClick={() => setOpenDrawerH(true)}
+              to="/"
+            >
+              HOME
+            </NavLink>
+          </Navbar.Item>
+        </motion.div>
         <Navbar.Item>
           {" "}
           <NavLink
@@ -169,6 +176,10 @@ const Navbar = {
     justify-content: space-between;
     align-items: center;
 
+    &:hover {
+      font-weight: bold;
+    }
+
     @media only screen and (max-width: 60em) {
       height: 10%;
       width: 8em;
@@ -179,7 +190,7 @@ const Navbar = {
     background-color: var(--color-background);
     margin-top: 19px;
 
-    width: 60vw;
+    width: 40vw;
     position: fixed;
     right: 0;
     top: 0;
@@ -189,6 +200,7 @@ const Navbar = {
     align-items: center;
 
     padding: 0rem 3rem;
+    border-right: 5px solid white;
 
     transition: 0.25s ease-out;
     transform: ${({ openDrawer }) =>
@@ -253,6 +265,9 @@ const HamburgerButton = {
       top: -25%;
       left: -25%;
     }
+    &:hover {
+      width: 4em;
+    }
   `,
   Lines: styled.div`
     top: 50%;
@@ -271,7 +286,6 @@ const HamburgerButton = {
       background-color: var(--color-foreground);
       position: absolute;
     }
-
     &:after {
       /* Move bottom line below center line */
       top: -0.8rem;
@@ -283,7 +297,6 @@ const HamburgerButton = {
     }
   `,
 };
-
 const CloseButton = {
   Wrapper: styled.button`
     cursor: pointer;
@@ -303,7 +316,10 @@ const CloseButton = {
     outline: none;
     content: "";
 
+    display: none;
+
     @media only screen and (max-width: 60em) {
+      display: flex;
       font-size: 1.5em;
       position: absolute;
       bottom: 0.65em;

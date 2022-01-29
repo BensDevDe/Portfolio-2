@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import NavContext from "./context/NavContext";
 
@@ -6,8 +6,16 @@ import { useTranslation } from "react-i18next";
 import AnimatedPage from "./AnimatedPage";
 import { motion } from "framer-motion";
 
+import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { MdAlternateEmail } from "react-icons/md";
+
+const onHover = {
+  whileHover: { scale: 1.9 },
+  transition: { duration: 1 },
+};
+
 const Home = () => {
-  // const { openDrawerH } = useContext(NavContext);
+  // const { display } = useContext(NavContext);
   // let display = openDrawerH === true ? "block" : "none !important";
 
   const { t } = useTranslation("common");
@@ -19,16 +27,59 @@ const Home = () => {
           {" "}
           <motion.div
             animate={{
-              fontSize: ["0%", "50%", "75%", "120%", "100%"],
+              fontSize: ["0%", "50%", "75%", "140%", "100%"],
 
               transition: { duration: 0.4, delay: 1 },
             }}
           >
-            <HomePage.Item>{t("welcome.name")}</HomePage.Item>
             <HomePage.Item>
+              {" "}
+              <motion.span variants={onHover}>B</motion.span>{" "}
+              <HomePage.NameSpan>E</HomePage.NameSpan>{" "}
+              <HomePage.NameSpan2>N</HomePage.NameSpan2> STAUTNER
+            </HomePage.Item>
+            <HomePage.Item>
+              {" "}
+              <HomePage.BoldSpan>
+                {" "}
+                {t("welcome.boldTitle")}{" "}
+                <HomePage.NameSpan3>B</HomePage.NameSpan3>{" "}
+              </HomePage.BoldSpan>
               {t("welcome.title")}
               <HomePage.Blink>|</HomePage.Blink>
             </HomePage.Item>{" "}
+            <HomePage.LinkContainer>
+              <HomePage.LinkElement
+                target="_blank"
+                href="https://github.com/BensDevDe"
+                rel="noreferrer"
+              >
+                {" "}
+                <FaGithub />
+              </HomePage.LinkElement>
+              <HomePage.LinkElement
+                target="_blank"
+                href="https://linkedin.com/in/ben-stautner-17a721226"
+                rel="noreferrer"
+              >
+                <FaLinkedinIn />
+              </HomePage.LinkElement>
+              <HomePage.LinkElement
+                target="_blank"
+                href="mailto:info@webogies.com"
+                rel="noreferrer"
+              >
+                {" "}
+                <MdAlternateEmail />
+              </HomePage.LinkElement>
+              <HomePage.LinkElement
+                target="_blank"
+                href="https://instagram.com/webogies"
+                rel="noreferrer"
+              >
+                <FaInstagram />
+              </HomePage.LinkElement>
+            </HomePage.LinkContainer>
           </motion.div>
         </HomePage.Text>
       </HomePage.Wrapper>
@@ -78,6 +129,26 @@ const HomePage = {
       height: 50px;
     }
   `,
+  BoldSpan: styled.span`
+    font-weight: 400;
+    margin-right: 22px;
+  `,
+
+  NameSpan: styled.span`
+    font-weight: 400;
+    margin-left: 6px;
+    color: grey;
+  `,
+  NameSpan2: styled.span`
+    font-weight: 400;
+    margin-left: -25px;
+    color: grey;
+  `,
+  NameSpan3: styled.span`
+    font-weight: 400;
+    margin-left: -25px;
+    color: grey;
+  `,
 
   Blink: styled.span`
     animation: blink 1100ms infinite;
@@ -98,6 +169,37 @@ const HomePage = {
         `
   display: none;
   `}
+    }
+  `,
+
+  LinkContainer: styled.div`
+    width: 100%;
+
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+
+    @media only screen and (max-width: 60em) {
+      display: flex;
+      margin-top: 20px;
+    }
+  `,
+
+  LinkElement: styled.a`
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-size: 1.7em;
+    &:nth-of-type(1):hover {
+      color: #343a40;
+    }
+    &:nth-of-type(2):hover {
+      color: #0a66c2;
+    }
+    &:nth-of-type(3):hover {
+      color: #f5bf5f;
+    }
+    &:nth-of-type(4):hover {
+      color: #d6249f;
     }
   `,
 };

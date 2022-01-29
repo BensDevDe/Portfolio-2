@@ -131,15 +131,20 @@ const Contact = () => {
                 <ContactPage.Label htmlFor="message">
                   {t("contact.contactMessage")}
                 </ContactPage.Label>
-                <ContactPage.TextArea
-                  rows="4"
-                  cols="50"
-                  type="text"
-                  name="message"
-                  autoComplete="off"
-                  value={toSend.message}
-                  onChange={handleChange}
-                ></ContactPage.TextArea>
+                <ContactPage.TextareaButtonContainer>
+                  <ContactPage.TextArea
+                    rows="4"
+                    cols="50"
+                    type="text"
+                    name="message"
+                    autoComplete="off"
+                    value={toSend.message}
+                    onChange={handleChange}
+                  ></ContactPage.TextArea>
+                  <ContactPage.SubmitButton type="submit">
+                    {t("contact.contactSend")}
+                  </ContactPage.SubmitButton>
+                </ContactPage.TextareaButtonContainer>
               </ContactPage.TextAreaContainer>
 
               <ContactPage.Confirmation disp={sendConfirmMessage}>
@@ -184,10 +189,6 @@ const Contact = () => {
                   </ContactPage.ConfirmationButton>
                 </ContactPage.ButtonContainer>
               </ContactPage.Confirmation>
-
-              <ContactPage.SubmitButton type="submit">
-                {t("contact.contactSend")}
-              </ContactPage.SubmitButton>
             </ContactPage.Form>
 
             <ContactPage.ThanksContainer thanks={thanksMessage}>
@@ -298,6 +299,7 @@ const ContactPage = {
     width: 100%;
 
     @media only screen and (max-width: 60em) {
+      margin-bottom: 80px;
     }
   `,
   // Form
@@ -320,6 +322,8 @@ const ContactPage = {
       margin-top: -50px;
       margin-bottom: 3.2vh;
     }
+
+
   `,
   // Input Container
   InputContainer: styled.div`
@@ -336,6 +340,10 @@ const ContactPage = {
     font-weight: 400;
     @media only screen and (max-width: 60em) {
       width: 30%;
+      font-size: 0.6em;
+    }
+    @media only screen and (max-width: 80em) {
+      font-size: 0.8em;
     }
   `,
   Input: styled.input`
@@ -386,6 +394,13 @@ const ContactPage = {
       width: 100%;
     }
   `,
+  TextareaButtonContainer: styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  `,
   TextArea: styled.textarea`
     width: 100%;
     height: 15em;
@@ -402,12 +417,17 @@ const ContactPage = {
     overflow: auto;
     &:focus {
       outline: none;
-      box-shadow: 0px 0px 10px red;
+      box-shadow: 0px 0px 10px var(--color-foreground);
       background-color: var(--color-background);
     }
     @media only screen and (max-width: 60em) {
       height: 150px;
       margin-top: 10px;
+      font-size: 1.4rem;
+    }
+
+    @media only screen and (max-width: 80em) {
+     height: 10em;
     }
   `,
   // Submit Button
@@ -450,12 +470,15 @@ const ContactPage = {
     }
     &:hover {
       cursor: pointer;
-      color: #f24a44;
-      border: 1px solid #f24a44;
+      color: var(--color-foreground);
+      border: 1px solid var(--color-foreground);
       border-radius: 3px;
     }
     @media only screen and (max-width: 60em) {
-      margin-top: 2px;
+      margin-top: 5px;
+      height: 30px;
+      width: 50px;
+      font-size: 0.6em;
     }
   `,
   //Confirmation Container
@@ -519,8 +542,7 @@ const ContactPage = {
       width: 90%;
     }
     @media only screen and (max-width: 60em) {
-
-     width: 60vw;
+      width: 60vw;
     }
   `,
   TextPH: styled.p`
@@ -554,7 +576,7 @@ const ContactPage = {
     margin-bottom: 40px;
 
     @media only screen and (max-width: 60em) {
-      margin-bottom: 100px;
+      margin-bottom: px;
     }
   `,
 
@@ -724,6 +746,10 @@ const ContactPage = {
     @media only screen and (max-width: 60em) {
       display: none;
     }
+
+    @media only screen and (max-width: 80em) {
+      display: none;
+    }
   `,
   //Link Container******************************************************************************************************************
   LinkContainer: styled.div`
@@ -739,6 +765,10 @@ const ContactPage = {
       height: 100%;
       margin-top: 20px;
     }
+    @media only screen and (max-width: 80em) {
+      gap: 8px;
+      width: 20%;
+    }
   `,
   LinkElement: styled.a`
     font-size: 12rem;
@@ -751,7 +781,7 @@ const ContactPage = {
     justify-content: center;
     align-items: center;
     &:nth-of-type(1):hover {
-      color: black;
+      color: #343a40;
     }
     &:nth-of-type(2):hover {
       color: #0a66c2;
@@ -768,9 +798,13 @@ const ContactPage = {
         display: none;
       }
     }
+    @media only screen and (max-width: 80em) {
+      font-size: 6rem;
+    }
     @media only screen and (max-width: 60em) {
       font-size: 2rem;
     }
+
   `,
 };
 
