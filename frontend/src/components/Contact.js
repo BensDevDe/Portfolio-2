@@ -256,7 +256,7 @@ const Contact = () => {
 const ContactPage = {
   Wrapper: styled.section`
   background-image: linear-gradient(
-          rgba(40, 20,20, 0.9),
+          rgba(190, 155,185, 0.9),
           rgba(0, 0, 0, 0.9)
         ),
         url(${(props) => props.img});

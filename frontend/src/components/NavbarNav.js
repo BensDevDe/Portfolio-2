@@ -39,22 +39,6 @@ const NavbarNav = () => {
   //TRANSLATION
   const { i18n } = useTranslation("common");
 
-  // const [aboutColor, setAboutColor] = useState(true);
-
-  // const aboutChange = () => {
-  //   if (!aboutColor) {
-  //     setAboutColor(true);
-  //   } else {
-  //     setAboutColor(false);
-  //   }
-  // };
-
-  // const about = () => {
-  //   setOpenDrawerH(true)
-  //   aboutChange();
-
-  // }
-
   return (
     <Navbar.Wrapper>
       <Navbar.Logo>
@@ -78,13 +62,15 @@ const NavbarNav = () => {
         </SwitchContainer.Wrapper>
       </Navbar.Logo>
       <motion.div
-      
         animate={{
           y: [-1400, 6400, -20, -20, 20, -20, 0, 20, 0],
           transition: { duration: 0.5, delay: 2 },
         }}
       >
-        <HamburgerButton.Wrapper onClick={() => setOpenDrawerH(false)}>
+        <HamburgerButton.Wrapper
+          onClick={() => setOpenDrawerH(false)}
+          openDrawer={!openDrawerH}
+        >
           <HamburgerButton.Lines />
         </HamburgerButton.Wrapper>
       </motion.div>
@@ -152,7 +138,6 @@ const Navbar = {
     flex: 1;
     align-self: flex-start;
     color: var(--color-foreground);
-    /* background-color: var(--color-background); */
     border: 3px solid var(--color-foreground);
     border-bottom: none;
 
@@ -165,22 +150,6 @@ const Navbar = {
     height: 10%;
     margin: 0 auto;
     padding: 1rem 3rem;
-
-    /* ${({ aboutChange }) =>
-      aboutChange
-        ? `
-
-        color-background: var(--color-about-background);
-    color-foreground; var(--color-about-foreground);
-    
-     
-      `
-        : `
-      color-background: var(--color-about-foreground);
-    color-foreground; var(--color-about-background);
-     
-     
-      `} */
 
     @media only screen and (max-width: 60em) {
       width: 100vw;
@@ -200,7 +169,6 @@ const Navbar = {
 
     padding-left: 3rem;
     color: var(--color-foreground);
-    /* background: var(--color-background); */
     font-size: 2em;
     cursor: pointer;
 
@@ -220,7 +188,6 @@ const Navbar = {
   `,
   Items: styled.ul`
     list-style: none;
-    /* background-color: var(--color-background); */
     margin-top: 19px;
 
     width: 40vw;
@@ -245,6 +212,8 @@ const Navbar = {
       z-index: 1;
       height: 100%;
       width: 100%;
+
+      background-color: var(--color-background);
 
       flex-direction: column;
       justify-content: center;
@@ -278,8 +247,6 @@ const Navbar = {
 
 const HamburgerButton = {
   Wrapper: styled.button`
-
-
     height: 3em;
     width: 3em;
     position: relative;
@@ -287,10 +254,14 @@ const HamburgerButton = {
     margin: 0.8em 3rem;
     color: var(--color-foreground);
 
-    display: ${({ openDrawer }) =>
-      openDrawer ? `none !important` : `block !important`};
+    display: block;
 
-   
+    ${({ openDrawer }) =>
+      openDrawer &&
+      `
+      display: none;
+     
+      `}
 
     /* Remove default button styles */
     border: none;
@@ -310,8 +281,6 @@ const HamburgerButton = {
     }
   `,
   Lines: styled.div`
-
-
     top: 50%;
     margin-top: -0.125em;
     color: var(--color-background);

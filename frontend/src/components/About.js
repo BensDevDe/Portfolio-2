@@ -42,6 +42,7 @@ const About = () => {
 
       width: 100vw;
       height: 100%;
+  
 
       padding: 20% 0;
 
@@ -82,6 +83,7 @@ const About = () => {
     `,
 
     Skills: styled.div`
+        opacity: 0.8;
       padding: 0rem 5rem;
       padding-bottom: 10%;
       height: 100%;
@@ -130,6 +132,7 @@ const About = () => {
       font-size: 1em;
       &:hover {
         font-weight: bold;
+        cursor: pointer;
       }
 
       span {
