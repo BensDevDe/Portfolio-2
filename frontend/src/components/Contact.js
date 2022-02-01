@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { useTranslation } from "react-i18next";
 import NavContext from "./context/NavContext";
+import DarkContext from "./context/DarkContext";
 
 import { send } from "emailjs-com";
 
@@ -13,6 +14,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import imgB from "../images/BEN_8817.JPG";
 
 const Contact = () => {
+
   const [thanksMessage, setThanksMessage] = useState(false);
 
   const handleThanksBox = () => {
@@ -74,11 +76,13 @@ const Contact = () => {
 
   const { t } = useTranslation("common");
 
+  const { isDark } = useContext(DarkContext);
+
   // Contact Page****
 
   return (
     <AnimatedPage>
-      <ContactPage.Wrapper display={openDrawerH} img={imgB}>
+      <ContactPage.Wrapper display={openDrawerH} dark={isDark} img={imgB}>
         <ContactPage.ContactContainer>
           <ContactPage.FormContainer>
             <ContactPage.Form onSubmit={onSubmit}>
@@ -255,11 +259,19 @@ const Contact = () => {
 
 const ContactPage = {
   Wrapper: styled.section`
-  background-image: linear-gradient(
-          rgba(190, 155,185, 0.9),
-          rgba(0, 0, 0, 0.9)
-        ),
-        url(${(props) => props.img});
+   background-image: ${({ dark }) =>
+      dark
+        ? `linear-gradient(
+        rgba(64, 64, 64, 0.9),
+        rgba(0, 0, 0, 0.9)
+      ),
+      url(${imgB})`
+        : `linear-gradient(
+        rgba(180, 106, 106, 0.9),
+        rgba(214, 214, 214, 0.9)
+      ),
+      url(${imgB})`};
+
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
@@ -776,11 +788,12 @@ const ContactPage = {
       width: 70%;
       gap: 3px;
       height: 100%;
-      margin-top: 20px;
+      margin-top: 10px;
+      margin-bottom: 40px;
     }
     @media only screen and (max-width: 80em) {
       gap: 8px;
-      width: 20%;
+      width: 40%;
     }
   `,
   LinkElement: styled.a`

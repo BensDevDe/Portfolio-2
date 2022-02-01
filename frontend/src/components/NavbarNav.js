@@ -2,10 +2,13 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import NavContext from "./context/NavContext";
+import DarkContext from "./context/DarkContext";
 
 import { CgDarkMode } from "react-icons/cg";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+
+import imgLogo from "../images/logo.png"
 
 const NavbarNav = () => {
   //NAVIGATION*****************************************************************
@@ -24,10 +27,12 @@ const NavbarNav = () => {
   });
 
   //DARKMODE**********************************************************
-  const [isDark, setIsDark] = useState(true);
+  const { isDark, setIsDark } = useContext(DarkContext);
+
   const darkModeChange = () => {
     setIsDark(!isDark);
   };
+
   useEffect(() => {
     if (isDark) {
       document.body.classList.add("dark");
@@ -43,7 +48,7 @@ const NavbarNav = () => {
     <Navbar.Wrapper>
       <Navbar.Logo>
         <NavLink style={linkStyle} onClick={() => setOpenDrawerH(true)} to="/">
-          BS{" "}
+          <Navbar.LogoImage src={imgLogo}></Navbar.LogoImage>
         </NavLink>
 
         <SwitchContainer.Wrapper>
@@ -185,6 +190,10 @@ const Navbar = {
       height: 10%;
       width: 8em;
     }
+  `,
+
+  LogoImage: styled.img`
+  width: 25%;
   `,
   Items: styled.ul`
     list-style: none;

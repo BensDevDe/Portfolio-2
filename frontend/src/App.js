@@ -12,11 +12,13 @@ import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 
 import NavState from "./components/context/NavState";
+import DarkState from "./components/context/DarkState"
 
 import data from "./projects-data.json";
 
 function App() {
   return (
+    <DarkState>
     <NavState>
       <HashRouter>
         <Styles.Wrapper>
@@ -42,6 +44,7 @@ function App() {
         </Styles.Wrapper>
       </HashRouter>
     </NavState>
+    </DarkState>
   );
 }
 

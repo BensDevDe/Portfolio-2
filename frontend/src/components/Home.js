@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import NavContext from "./context/NavContext";
+import DarkContext from "./context/DarkContext";
 
 import { useTranslation } from "react-i18next";
 import AnimatedPage from "./AnimatedPage";
@@ -20,13 +21,15 @@ const Home = () => {
   // const { display } = useContext(NavContext);
   // let display = openDrawerH === true ? "block" : "none !important";
 
+  const { isDark } = useContext(DarkContext);
+
   const { openDrawerH } = useContext(NavContext);
 
   const { t } = useTranslation("common");
 
   return (
     <AnimatedPage>
-      <HomePage.Wrapper display={openDrawerH} img={imgB}>
+      <HomePage.Wrapper display={openDrawerH} dark={isDark} img={imgB}>
         <HomePage.Text>
           {" "}
           <motion.div
@@ -93,11 +96,18 @@ const Home = () => {
 
 const HomePage = {
   Wrapper: styled.section`
-    background-image: linear-gradient(
-        rgba(155, 155, 155, 0.9),
+    background-image: ${({ dark }) =>
+      dark
+        ? `linear-gradient(
+        rgba(64, 64, 64, 0.9),
         rgba(0, 0, 0, 0.9)
       ),
-      url(${(props) => props.img});
+      url(${imgB})`
+        : `linear-gradient(
+        rgba(242, 242, 242, 0.9),
+        rgba(214, 214, 214, 0.9)
+      ),
+      url(${imgB})`};
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
@@ -127,21 +137,28 @@ const HomePage = {
     width: 100vw;
     height: 100%;
 
+ 
+
     padding: 0 4em;
     color: var(--color-foreground);
-    /* background-color: var(--color-background); */
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+
+    @media only screen and (max-width: 60em) {
+      padding: 0 em;
+      
+    }
   `,
   Item: styled.p`
     font-size: 9em;
     height: 100px;
 
     @media only screen and (max-width: 60em) {
-      font-size: 1.8em;
+      font-size: 3em;
+      font-weight: bold;
       height: 30px;
     }
   `,
@@ -190,14 +207,22 @@ const HomePage = {
 
   LinkContainer: styled.div`
     width: 100%;
+  
 
     display: none;
     justify-content: space-between;
     align-items: center;
 
     @media only screen and (max-width: 60em) {
+      width: 100%;
+      height: 90%;
+    
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 1.2em;
       display: flex;
-      margin-top: 150px;
+      margin-top: 20px;
     }
   `,
 
