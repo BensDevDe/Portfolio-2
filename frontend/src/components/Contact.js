@@ -1,154 +1,185 @@
-import React, { useContext, useState } from "react";
-import AnimatedPage from "./AnimatedPage";
-import styled from "styled-components";
+import React, { useContext, useState } from 'react'
+import AnimatedPage from './AnimatedPage'
+import { motion } from 'framer-motion'
+import styled from 'styled-components'
 
-import { useTranslation } from "react-i18next";
-import NavContext from "./context/NavContext";
-import DarkContext from "./context/DarkContext";
+import { useTranslation } from 'react-i18next'
+import NavContext from './context/NavContext'
+import DarkContext from './context/DarkContext'
 
-import { send } from "emailjs-com";
+import { send } from 'emailjs-com'
 
-import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import { MdAlternateEmail } from "react-icons/md";
+import { FaGithub, FaLinkedinIn, FaInstagram, FaXing } from 'react-icons/fa'
+import { MdAlternateEmail } from 'react-icons/md'
 
-import imgB from "../images/BEN_8817.JPG";
+import { RiArrowRightUpFill } from 'react-icons/ri'
+
+import imgB from '../images/BEN_8817.JPG'
+import qrCode from '../images/static-qr-code.png'
 
 const Contact = () => {
-
-  const [thanksMessage, setThanksMessage] = useState(false);
+  const [thanksMessage, setThanksMessage] = useState(false)
 
   const handleThanksBox = () => {
     if (!thanksMessage) {
-      setThanksMessage(true);
+      setThanksMessage(true)
     } else {
-      setThanksMessage(false);
+      setThanksMessage(false)
     }
-  };
+  }
 
-  const [sendConfirmMessage, setSendConfirmMessage] = useState(false);
-  console.log(sendConfirmMessage);
+  const [sendConfirmMessage, setSendConfirmMessage] = useState(false)
 
   const handleConfirmationBox = () => {
     if (!sendConfirmMessage) {
-      setSendConfirmMessage(true);
+      setSendConfirmMessage(true)
     } else {
-      setSendConfirmMessage(false);
+      setSendConfirmMessage(false)
     }
-  };
+  }
 
   const [toSend, setToSend] = useState({
-    from_name: "",
-    subject: "",
-    message: "",
-    reply_to: "",
-  });
+    from_name: '',
+    subject: '',
+    message: '',
+    reply_to: '',
+  })
 
   const onConfirm = () => {
     send(
-      "service_ggrmtqn",
-      "template_30uietm",
+      'service_ggigpii',
+      'template_30uietm',
       toSend,
-      "user_f10RlSTnBDVKFHRKVzel4"
+      'user_f10RlSTnBDVKFHRKVzel4'
     )
       .then((response) => {
-        console.log("Success", response.status, response.text);
-        handleThanksBox();
+        console.log('Success', response.status, response.text)
+        handleThanksBox()
       })
       .catch((err) => {
-        alert("FAILED...", err);
-      });
-  };
+        alert('FAILED...', err)
+      })
+  }
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    handleConfirmationBox();
-  };
+    e.preventDefault()
+    handleConfirmationBox()
+  }
 
   const handleChange = (e) => {
-    setToSend({ ...toSend, [e.target.name]: e.target.value });
-  };
+    setToSend({ ...toSend, [e.target.name]: e.target.value })
+  }
 
   //Navbar Mobile********************************************************************
 
-  const { openDrawerH } = useContext(NavContext);
+  const { openDrawerH } = useContext(NavContext)
 
   //Translation**********************************************************************
 
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common')
 
-  const { isDark } = useContext(DarkContext);
+  const { isDark } = useContext(DarkContext)
+
+  const [showIt, setShowIt] = useState(false)
+
+  const variants = {
+    open: {
+      opacity: 1,
+      x: '63vw',
+      rotate: [0, 0, 10, -10, 0],
+      y: '20%',
+    },
+    closed: { opacity: 1, x: '0%' },
+  }
 
   // Contact Page****
 
   return (
     <AnimatedPage>
-      <ContactPage.Wrapper display={openDrawerH} dark={isDark} img={imgB}>
+      <ContactPage.Wrapper
+        showIt={showIt}
+        display={openDrawerH}
+        dark={isDark}
+        img={imgB}
+      >
         <ContactPage.ContactContainer>
           <ContactPage.FormContainer>
             <ContactPage.Form onSubmit={onSubmit}>
-              <ContactPage.FormHead>Get In Touch ! </ContactPage.FormHead>
+              <motion.div
+                show={showIt}
+                animate={showIt ? 'open' : 'closed'}
+                variants={variants}
+              >
+                <ContactPage.FormHead show={showIt}>
+                  {' '}
+                  {t('contact.title')}{' '}
+                </ContactPage.FormHead>
+              </motion.div>
               <ContactPage.InputContainer>
-                <ContactPage.Label htmlFor="name">
-                  {t("contact.contactName")}
+                <ContactPage.Label htmlFor='name'>
+                  {t('contact.contactName')}
                 </ContactPage.Label>
                 <ContactPage.Input
-                  type="text"
-                  name="from_name"
+                  type='text'
+                  name='from_name'
                   required
-                  autoComplete="off"
+                  autoComplete='off'
                   value={toSend.from_name}
                   onChange={handleChange}
                 ></ContactPage.Input>
               </ContactPage.InputContainer>
               <ContactPage.InputContainer>
-                <ContactPage.Label htmlFor="email">
-                  {t("contact.contactMail")}
+                <ContactPage.Label htmlFor='email'>
+                  {t('contact.contactMail')}
                 </ContactPage.Label>
                 <ContactPage.Input
-                  type="email"
-                  name="reply_to"
+                  type='email'
+                  name='reply_to'
                   required
-                  autoComplete="off"
+                  autoComplete='off'
                   value={toSend.reply_to}
                   onChange={handleChange}
                 ></ContactPage.Input>
               </ContactPage.InputContainer>
               <ContactPage.InputContainer>
-                <ContactPage.Label htmlFor="subject">
-                  {t("contact.contactSubject")}
+                <ContactPage.Label htmlFor='subject'>
+                  {t('contact.contactSubject')}
                 </ContactPage.Label>
                 <ContactPage.Select
-                  type="text"
-                  name="subject"
+                  type='text'
+                  name='subject'
                   value={toSend.subject}
                   onChange={handleChange}
                 >
-                  <ContactPage.Option>--Please choose one--</ContactPage.Option>
-                  <ContactPage.Option value="Web-Development">
+                  <ContactPage.Option>
+                    {' '}
+                    {t('contact.contactSubjectOption')}
+                  </ContactPage.Option>
+                  <ContactPage.Option value='Web-Development'>
                     Web Development
                   </ContactPage.Option>
-                  <ContactPage.Option value="UI/UX Design">
+                  <ContactPage.Option value='UI/UX Design'>
                     UI/UX Design
                   </ContactPage.Option>
-                  <ContactPage.Option value="other">other</ContactPage.Option>
+                  <ContactPage.Option value='other'>other</ContactPage.Option>
                 </ContactPage.Select>
               </ContactPage.InputContainer>
               <ContactPage.TextAreaContainer>
-                <ContactPage.Label htmlFor="message">
-                  {t("contact.contactMessage")}
+                <ContactPage.Label htmlFor='message'>
+                  {t('contact.contactMessage')}
                 </ContactPage.Label>
                 <ContactPage.TextareaButtonContainer>
                   <ContactPage.TextArea
-                    rows="4"
-                    cols="50"
-                    type="text"
-                    name="message"
-                    autoComplete="off"
+                    rows='4'
+                    cols='50'
+                    type='text'
+                    name='message'
+                    autoComplete='off'
                     value={toSend.message}
                     onChange={handleChange}
                   ></ContactPage.TextArea>
-                  <ContactPage.SubmitButton type="submit">
-                    {t("contact.contactSend")}
+                  <ContactPage.SubmitButton type='submit'>
+                    {t('contact.contactSend')}
                   </ContactPage.SubmitButton>
                 </ContactPage.TextareaButtonContainer>
               </ContactPage.TextAreaContainer>
@@ -157,28 +188,28 @@ const Contact = () => {
                 <ContactPage.Text>
                   <ContactPage.TextDiv>
                     <ContactPage.TextPH>
-                      {t("contact.contactName")}:
+                      {t('contact.contactName')}:
                     </ContactPage.TextPH>
                     <ContactPage.TextP>{toSend.from_name}</ContactPage.TextP>
                   </ContactPage.TextDiv>
                   <ContactPage.TextDiv>
                     <ContactPage.TextPH>
-                      {" "}
-                      {t("contact.contactMail")}:{" "}
+                      {' '}
+                      {t('contact.contactMail')}:{' '}
                     </ContactPage.TextPH>
                     <ContactPage.TextP>{toSend.reply_to}</ContactPage.TextP>
                   </ContactPage.TextDiv>
                   <ContactPage.TextDiv>
                     <ContactPage.TextPH>
-                      {" "}
-                      {t("contact.contactSubject")}:
+                      {' '}
+                      {t('contact.contactSubject')}:
                     </ContactPage.TextPH>
                     <ContactPage.TextP>{toSend.subject}</ContactPage.TextP>
                   </ContactPage.TextDiv>
                   <ContactPage.TextDiv>
                     <ContactPage.TextPH>
-                      {" "}
-                      {t("contact.contactMessage")}:
+                      {' '}
+                      {t('contact.contactMessage')}:
                     </ContactPage.TextPH>
                     <ContactPage.TextMessage>
                       {toSend.message}
@@ -188,10 +219,10 @@ const Contact = () => {
 
                 <ContactPage.ButtonContainer>
                   <ContactPage.CancelButton onSubmit={onSubmit}>
-                    {t("contact.backButton")}
+                    {t('contact.backButton')}
                   </ContactPage.CancelButton>
                   <ContactPage.ConfirmationButton onClick={() => onConfirm()}>
-                    {t("contact.confirmButton")}
+                    {t('contact.confirmButton')}
                   </ContactPage.ConfirmationButton>
                 </ContactPage.ButtonContainer>
               </ContactPage.Confirmation>
@@ -199,11 +230,11 @@ const Contact = () => {
 
             <ContactPage.ThanksContainer thanks={thanksMessage}>
               <ContactPage.ThanksText>
-                {t("contact.thanksText")}
+                {t('contact.thanksText')}
               </ContactPage.ThanksText>
               <ContactPage.ButtonContainerThanks>
                 <ContactPage.ContinueButton onClick={() => handleThanksBox()}>
-                  {t("contact.continueButton")}
+                  {t('contact.continueButton')}
                 </ContactPage.ContinueButton>
               </ContactPage.ButtonContainerThanks>
             </ContactPage.ThanksContainer>
@@ -217,65 +248,88 @@ const Contact = () => {
 
           <ContactPage.LinkContainer>
             <ContactPage.LinkElement
-              target="_blank"
-              href="https://github.com/BensDevDe"
-              rel="noreferrer"
+              show={showIt}
+              target='_blank'
+              href='https://github.com/BensDevDe'
+              rel='noreferrer'
             >
-              {" "}
+              {' '}
               <FaGithub />
               <p>Github</p>
             </ContactPage.LinkElement>
             <ContactPage.LinkElement
-              target="_blank"
-              href="https://linkedin.com/in/ben-stautner-17a721226"
-              rel="noreferrer"
+              show={showIt}
+              target='_blank'
+              href='https://linkedin.com/in/ben-stautner-17a721226'
+              rel='noreferrer'
             >
               <FaLinkedinIn />
               <p>Linkedin</p>
             </ContactPage.LinkElement>
             <ContactPage.LinkElement
-              target="_blank"
-              href="mailto:info@webogies.com"
-              rel="noreferrer"
+              show={showIt}
+              target='_blank'
+              href='mailto:info@webogies.com'
+              rel='noreferrer'
             >
-              {" "}
+              {' '}
               <MdAlternateEmail />
               <p>Mail</p>
             </ContactPage.LinkElement>
             <ContactPage.LinkElement
-              target="_blank"
-              href="https://instagram.com/webogies"
-              rel="noreferrer"
+              show={showIt}
+              target='_blank'
+              href='https://instagram.com/webogies'
+              rel='noreferrer'
             >
               <FaInstagram />
               <p>Instagram</p>
             </ContactPage.LinkElement>
+
+            <ContactPage.LinkElement
+              show={showIt}
+              target='_blank'
+              href='https://xing.com'
+              rel='noreferrer'
+            >
+              <FaXing />
+              <p>Xing</p>
+            </ContactPage.LinkElement>
+            <ContactPage.QrCode
+              show={showIt}
+              onMouseEnter={() => setShowIt(true)}
+              onMouseLeave={() => setShowIt(false)}
+              src={qrCode}
+            ></ContactPage.QrCode>
+            <ContactPage.ScanMe show={showIt}>
+              {t('contact.scanMe')} <RiArrowRightUpFill />
+            </ContactPage.ScanMe>
           </ContactPage.LinkContainer>
         </ContactPage.ContactContainer>
       </ContactPage.Wrapper>
     </AnimatedPage>
-  );
-};
+  )
+}
 
 const ContactPage = {
   Wrapper: styled.section`
-   background-image: ${({ dark }) =>
+    background-image: ${({ dark }) =>
       dark
         ? `linear-gradient(
-        rgba(64, 64, 64, 0.9),
+        rgba(43, 43, 43, 0.9),
         rgba(0, 0, 0, 0.9)
       ),
       url(${imgB})`
-        : `linear-gradient(
-        rgba(180, 106, 106, 0.9),
-        rgba(214, 214, 214, 0.9)
+        : `radial-gradient(
+        rgba(245, 245, 220, 0.8),
+        rgba(214, 214, 214, 0.8)
       ),
       url(${imgB})`};
 
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
 
     width: 100vw;
     height: 100vh;
@@ -346,8 +400,6 @@ const ContactPage = {
       margin-top: -50px;
       margin-bottom: 3.2vh;
     }
-
-
   `,
   // Input Container
   InputContainer: styled.div`
@@ -381,7 +433,7 @@ const ContactPage = {
     border-bottom: 1px solid var(--color-foreground);
     &:focus {
       outline: none;
-      background-color: var(--color-background);
+      background-color: transparent;
     }
 
     @media only screen and (max-width: 60em) {
@@ -435,7 +487,7 @@ const ContactPage = {
     border: 1px solid var(--color-foreground);
     border-radius: 3px;
 
-    font-family: "Cairo", sans-serif;
+    font-family: 'Cairo', sans-serif;
     font-weight: 100;
     font-size: 2rem;
 
@@ -452,7 +504,7 @@ const ContactPage = {
     }
 
     @media only screen and (max-width: 80em) {
-     height: 10em;
+      height: 10em;
     }
   `,
   // Submit Button
@@ -476,7 +528,7 @@ const ContactPage = {
     cursor: pointer;
 
     &:after {
-      content: "";
+      content: '';
       background: var(--color-foreground);
       display: block;
       position: absolute;
@@ -624,7 +676,7 @@ const ContactPage = {
     cursor: pointer;
 
     &:after {
-      content: "";
+      content: '';
       background: var(--color-background);
       display: block;
       position: absolute;
@@ -793,11 +845,11 @@ const ContactPage = {
     }
     @media only screen and (max-width: 80em) {
       gap: 8px;
-      width: 40%;
+      width: 60%;
     }
   `,
   LinkElement: styled.a`
-    font-size: 12rem;
+    font-size: 8rem;
     color: var(--color-foreground);
 
     text-decoration: none;
@@ -806,17 +858,72 @@ const ContactPage = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    &:nth-of-type(1) {
+      ${({ show }) =>
+        show &&
+        `
+      display: none;
+     
+      `}
+    }
+
+    &:nth-of-type(2) {
+      ${({ show }) =>
+        show &&
+        `
+      display: none;
+     
+      `}
+    }
+
+    &:nth-of-type(3) {
+      ${({ show }) =>
+        show &&
+        `
+      display: none;
+     
+      `}
+    }
+
+    &:nth-of-type(4) {
+      ${({ show }) =>
+        show &&
+        `
+      display: none;
+     
+      `}
+    }
+
+    &:nth-of-type(5) {
+      ${({ show }) =>
+        show &&
+        `
+      display: none;
+     
+      `}
+    }
+
     &:nth-of-type(1):hover {
+      box-shadow: 0 0 10px rgba(52, 58, 64, 0.9);
       color: #343a40;
     }
     &:nth-of-type(2):hover {
+      box-shadow: 0 0 10px rgba(10, 102, 194, 0.9);
       color: #0a66c2;
     }
     &:nth-of-type(3):hover {
+      box-shadow: 0 0 10px rgba(245, 191, 95, 0.9);
       color: #f5bf5f;
     }
     &:nth-of-type(4):hover {
+      box-shadow: 0 0 10px rgba(214, 36, 159, 0.9);
       color: #d6249f;
+    }
+
+    &:nth-of-type(5):hover {
+      box-shadow: 0 0 10px rgba(5, 152, 160, 0.9);
+      color: #0598a0;
     }
     p {
       font-size: 0.15em;
@@ -830,8 +937,36 @@ const ContactPage = {
     @media only screen and (max-width: 60em) {
       font-size: 2rem;
     }
-
   `,
-};
 
-export default Contact;
+  QrCode: styled.img`
+    background-color: white;
+    border: 3px solid var(--color-foreground);
+    border-radius: 15px;
+    width: 25%;
+    height: 25%;
+
+    &:hover {
+      border: 3px solid var(--color-foreground);
+      border-radius: 25px;
+      width: 100%;
+    }
+
+    @media only screen and (max-width: 60em) {
+      display: none;
+    }
+  `,
+
+  ScanMe: styled.div`
+    font-size: 2em;
+    display: none;
+    ${({ show }) =>
+      show &&
+      `
+      display: flex;
+     
+      `}
+  `,
+}
+
+export default Contact

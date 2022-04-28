@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaInstagram, FaXing } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 
 const getCurrentYear = () => {
@@ -43,6 +43,13 @@ const Footer = () => {
             rel="noreferrer"
           >
             <FaInstagram />
+          </FooterPage.LinkElement>
+          <FooterPage.LinkElement
+            target="_blank"
+            href="https://xing.com"
+            rel="noreferrer"
+          >
+            <FaXing />
           </FooterPage.LinkElement>
         </FooterPage.LinkContainer>
       </FooterPage.Box>
@@ -102,6 +109,10 @@ const FooterPage = {
     }
     &:nth-of-type(4):hover {
       color: #d6249f;
+    }
+
+    &:nth-of-type(5):hover {
+      color: #0598A0;
     }
   `,
 };

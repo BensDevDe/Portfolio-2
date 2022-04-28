@@ -65,11 +65,21 @@
     "contactName": "YOUR NAME",
     "contactMail": "YOUR EMAIL",
     "contactSubject": "SUBJECT",
+    "contactSubjectOption": "--please choose one--",
     "contactMessage": "MESSAGE",
     "contactSend": "SEND",
     "thanksText": "THANK YOU FOR YOUR MESSAGE!",
     "backButton": "Go Back",
     "confirmButton": "Confirm",
-    "continueButton": "Continue"
+    "continueButton": "Continue",
+    "scanMe": "Scan Me"
+  },
+
+
+  "about": {
+    "title": "ABOUT",
+    "skills": "SKILLS",
+    "me": "ME"
+    
   }
 }

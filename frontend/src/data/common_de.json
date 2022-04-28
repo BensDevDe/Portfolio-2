@@ -61,15 +61,25 @@
   ],
 
   "contact": {
-    "title": "GET IN TOUCH",
+    "title": "KONTAKT",
     "contactName": "NAME",
     "contactMail": "EMAIL",
     "contactSubject": "BETREFF",
+    "contactSubjectOption": "--bitte auswählen--",
     "contactMessage": "NACHRICHT",
     "contactSend": "SENDEN",
     "thanksText": "VIELEN DANK FÜR IHRE NACHRICHT! ",
     "backButton": "Zurück",
     "confirmButton": "Bestätigen",
-    "continueButton": "Weiter"
+    "continueButton": "Weiter",
+    "scanMe": "Scan mich"
+  },
+
+
+  "about": {
+    "title": "ABOUT",
+    "skills": "SKILLS",
+    "me": "ME"
+    
   }
 }

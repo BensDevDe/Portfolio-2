@@ -42,6 +42,10 @@ font-size: 5em;
 padding: 70% 0px;
       }
     `,
+    WrapperSpan: styled.span`
+    color: var(--color-foreground);
+    font-size: 0.2em;
+    `,
 
   
   };
@@ -51,10 +55,14 @@ padding: 70% 0px;
       color: var(--color-background);
       border: 3px solid var(--color-foreground);
     `,
+
+
   };
+  
   return (
     <AnimatedPage>
-      <ProjectPage.Wrapper img={imgB}>PROJECTS</ProjectPage.Wrapper>
+      <ProjectPage.Wrapper img={imgB}>PROJECTS <ProjectPage.WrapperSpan>...coming soon</ProjectPage.WrapperSpan></ProjectPage.Wrapper>
+ 
       <ProjectContainer.Wrapper></ProjectContainer.Wrapper>
     </AnimatedPage>
   );

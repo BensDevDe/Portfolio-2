@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import AnimatedPage from "./AnimatedPage";
 import { motion } from "framer-motion";
 
-import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaInstagram, FaXing } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 
 import imgB from "../images/IMG_ME.jpeg";
@@ -18,8 +18,7 @@ const onHover = {
 };
 
 const Home = () => {
-  // const { display } = useContext(NavContext);
-  // let display = openDrawerH === true ? "block" : "none !important";
+ 
 
   const { isDark } = useContext(DarkContext);
 
@@ -34,24 +33,24 @@ const Home = () => {
           {" "}
           <motion.div
             animate={{
-              fontSize: ["0%", "50%", "75%", "140%", "100%"],
+              fontSize: ["0%", "25%", "50%", "75%", "100%", "125%","140%", "120%", "100%"],
 
-              transition: { duration: 0.4, delay: 1 },
+              transition: { duration: 0.5, delay: 1 },
             }}
           >
             <HomePage.Item>
               {" "}
               <motion.span variants={onHover}>B</motion.span>{" "}
-              <HomePage.NameSpan>E</HomePage.NameSpan>{" "}
-              <HomePage.NameSpan2>N</HomePage.NameSpan2> STAUTNER
+              <HomePage.NameSpan display={!openDrawerH}>E</HomePage.NameSpan>{" "}
+              <HomePage.NameSpan2 display={!openDrawerH}>N</HomePage.NameSpan2> STAUTNER
             </HomePage.Item>
             <HomePage.Item>
               {" "}
               <HomePage.BoldSpan>
                 {" "}
                 {t("welcome.boldTitle")}{" "}
-                <HomePage.NameSpan3>E</HomePage.NameSpan3>{" "}
-                <HomePage.NameSpan4>B</HomePage.NameSpan4>{" "}
+                <HomePage.NameSpan3 display={!openDrawerH}>E</HomePage.NameSpan3>{" "}
+                <HomePage.NameSpan4 display={!openDrawerH}>B</HomePage.NameSpan4>{" "}
               </HomePage.BoldSpan>
               {t("welcome.title")}
             </HomePage.Item>{" "}
@@ -86,6 +85,13 @@ const Home = () => {
               >
                 <FaInstagram />
               </HomePage.LinkElement>
+              <HomePage.LinkElement
+                target="_blank"
+                href="https://xing.com"
+                rel="noreferrer"
+              >
+                <FaXing />
+              </HomePage.LinkElement>
             </HomePage.LinkContainer>
           </motion.div>
         </HomePage.Text>
@@ -104,7 +110,7 @@ const HomePage = {
       ),
       url(${imgB})`
         : `linear-gradient(
-        rgba(242, 242, 242, 0.9),
+        rgba(255, 255, 224, 0.9),
         rgba(214, 214, 214, 0.9)
       ),
       url(${imgB})`};
@@ -125,6 +131,7 @@ const HomePage = {
     border: 3px solid var(--color-foreground);
 
     @media only screen and (max-width: 60em) {
+ 
       ${({ display }) =>
         display &&
         `
@@ -137,8 +144,6 @@ const HomePage = {
     width: 100vw;
     height: 100%;
 
- 
-
     padding: 0 4em;
     color: var(--color-foreground);
 
@@ -149,7 +154,9 @@ const HomePage = {
 
     @media only screen and (max-width: 60em) {
       padding: 0 em;
-      
+      height: 400px;
+      justify-content: space-between;
+      align-items: space-between;
     }
   `,
   Item: styled.p`
@@ -172,16 +179,28 @@ const HomePage = {
 
   NameSpan: styled.span`
     margin-left: 4px;
-    color: grey;
+ 
+    ${({ display }) =>
+      display &&
+      `
+    
+      `}
 
     @media only screen and (max-width: 60em) {
       margin-right: 4px;
     }
   `,
   NameSpan2: styled.span`
-    margin-left: -25px;
     margin-right: 41px;
     color: grey;
+
+    ${({ display }) =>
+      display &&
+      `
+      color: transparent;
+      text-shadow: 0 0 10px rgba(25,25,112,0.9);
+    
+      `}
 
     @media only screen and (max-width: 60em) {
       margin-right: 23px;
@@ -192,6 +211,14 @@ const HomePage = {
     margin-left: -25px;
     color: grey;
 
+    ${({ display }) =>
+      display &&
+      `
+      color: transparent;
+      text-shadow: 0 0 10px rgba(112,128,144,0.9);
+     
+      `}
+
     @media only screen and (max-width: 60em) {
       margin-left: 0px;
     }
@@ -200,6 +227,15 @@ const HomePage = {
     margin-left: 0px;
     color: grey;
 
+    ${({ display }) =>
+      display &&
+      `
+      color: transparent;
+      text-shadow: 0 0 10px rgba(0,255,112,0.9);
+    
+     
+      `}
+
     @media only screen and (max-width: 60em) {
       margin-right: 20px;
     }
@@ -207,7 +243,6 @@ const HomePage = {
 
   LinkContainer: styled.div`
     width: 100%;
-  
 
     display: none;
     justify-content: space-between;
@@ -215,14 +250,16 @@ const HomePage = {
 
     @media only screen and (max-width: 60em) {
       width: 100%;
-      height: 90%;
-    
+      height: 80%;
+
       align-items: flex-start;
       justify-content: center;
       flex-wrap: wrap;
       font-size: 1.2em;
       display: flex;
-      margin-top: 20px;
+      margin-top: -170px;
+      gap: 10px;
+      
     }
   `,
 
@@ -241,6 +278,9 @@ const HomePage = {
     }
     &:nth-of-type(4):hover {
       color: #d6249f;
+    }
+    &:nth-of-type(5):hover {
+      color: #0598a0;
     }
   `,
 };

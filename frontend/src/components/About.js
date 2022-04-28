@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 import AnimatedPage from "./AnimatedPage";
 import styled from "styled-components";
@@ -33,13 +34,15 @@ const About = () => {
 
   const { isDark } = useContext(DarkContext);
 
+  const { t } = useTranslation("common");
+
   return (
     <AnimatedPage>
       <AboutPage.Wrapper display={openDrawerH} dark={isDark} img={imgB}>
-        ABOUT
+        {t("about.title")}
         <AboutPage.AboutContainer>
           <AboutPage.Skills dark={isDark} img2={imgB2}>
-            <AboutPage.SkillsHead>SKILLS</AboutPage.SkillsHead>
+            <AboutPage.SkillsHead> {t("about.skills")}</AboutPage.SkillsHead>
 
             <AboutPage.SkillsContainer>
               <AboutPage.SkillsBox>
@@ -198,7 +201,7 @@ const About = () => {
                   >
                     <SiAdobelightroom />
                   </AboutPage.SkillsLink>
-                  <span>ADOBE LR</span>
+                  <span>Adobe LR</span>
                 </AboutPage.SkillsDiv>
 
                 <AboutPage.SkillsDiv>
@@ -217,7 +220,7 @@ const About = () => {
 
           <AboutPage.Me dark={isDark} img3={imgB3}>
             {" "}
-            <AboutPage.MeHead>ME</AboutPage.MeHead>
+            <AboutPage.MeHead> {t("about.me")}</AboutPage.MeHead>
             <AboutPage.MeContainer></AboutPage.MeContainer>
           </AboutPage.Me>
         </AboutPage.AboutContainer>
@@ -236,7 +239,7 @@ const AboutPage = {
       ),
       url(${imgB})`
         : `linear-gradient(
-        rgba(242, 242, 242, 0.9),
+        rgba(255, 255, 242, 0.9),
         rgba(214, 214, 214, 0.9)
       ),
       url(${imgB})`};
@@ -248,7 +251,7 @@ const AboutPage = {
     width: 100vw;
     height: 100%;
 
-    padding: 20% 0;
+    padding: 10% 0% 20% 0%;
 
     color: var(--color-foreground);
     border: 3px solid var(--color-foreground);
@@ -289,6 +292,7 @@ const AboutPage = {
     opacity: 0.8;
     padding: 0rem 5rem;
     padding-bottom: 5%;
+    margin-top: -5%;
     height: 60%;
 
     background-image: ${({ dark }) =>
@@ -299,7 +303,7 @@ const AboutPage = {
       ),
       url(${imgB2})`
         : `linear-gradient(
-        rgba(242, 242, 242, 0.9),
+        rgba(255, 255, 240, 0.9),
         rgba(214, 214, 214, 0.9)
       ),
       url(${imgB2})`};
@@ -310,15 +314,15 @@ const AboutPage = {
     background-attachment: fixed;
 
     width: 100vw;
-  
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: flex-end;
   `,
 
   SkillsHead: styled.h1`
-    font-size: 1em;
+    font-size: 0.8em;
     font-weight: 100;
     color: var(--color-foreground);
 
@@ -369,13 +373,13 @@ const AboutPage = {
     background-image: ${({ dark }) =>
       dark
         ? `linear-gradient(
-    rgba(64, 64, 64, 0.9),
+    rgba(47, 79, 79, 0.9),
     rgba(0, 0, 0, 0.9)
   ),
   url(${imgB3})`
         : `linear-gradient(
-    rgba(224, 255, 255, 0.9),
-    rgba(214, 214, 214, 0.9)
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 224, 0.9)
   ),
   url(${imgB3})`};
 
@@ -393,7 +397,7 @@ const AboutPage = {
   `,
 
   MeHead: styled.h1`
-    font-size: 1em;
+    font-size: 0.8em;
     font-weight: 100;
     color: var(--color-foreground);
 

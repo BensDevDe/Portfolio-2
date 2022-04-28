@@ -1,66 +1,68 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-import NavContext from "./context/NavContext";
-import DarkContext from "./context/DarkContext";
+import React, { useEffect, useRef, useContext, useState } from 'react'
+import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
+import NavContext from './context/NavContext'
+import DarkContext from './context/DarkContext'
 
-import { CgDarkMode } from "react-icons/cg";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { CgDarkMode } from 'react-icons/cg'
+import { useTranslation } from 'react-i18next'
+import { motion } from 'framer-motion'
 
-import imgLogo from "../images/logo.png"
+import whiteLogo from '../images/white.png'
+import blackLogo from '../images/black.png'
 
 const NavbarNav = () => {
   //NAVIGATION*****************************************************************
-  const { openDrawerH, setOpenDrawerH } = useContext(NavContext);
-  const drawerRef = useRef(null);
+  const { openDrawerH, setOpenDrawerH } = useContext(NavContext)
+  const drawerRef = useRef(null)
 
   useEffect(() => {
     const closeDrawer = (event) => {
       if (drawerRef.current && drawerRef.current.contains(event.target)) {
-        return;
+        return
       }
-      setOpenDrawerH(true);
-    };
-    document.addEventListener("mousedown", closeDrawer);
-    return () => document.removeEventListener("mousedown", closeDrawer);
-  });
+      setOpenDrawerH(true)
+    }
+    document.addEventListener('mousedown', closeDrawer)
+    return () => document.removeEventListener('mousedown', closeDrawer)
+  })
 
   //DARKMODE**********************************************************
-  const { isDark, setIsDark } = useContext(DarkContext);
+  const { isDark, setIsDark } = useContext(DarkContext)
 
   const darkModeChange = () => {
-    setIsDark(!isDark);
-  };
+    setIsDark(!isDark)
+  }
 
   useEffect(() => {
     if (isDark) {
-      document.body.classList.add("dark");
+      document.body.classList.add('dark')
     } else {
-      document.body.classList.remove("dark");
+      document.body.classList.remove('dark')
     }
-  }, [isDark]);
+  }, [isDark])
 
   //TRANSLATION
-  const { i18n } = useTranslation("common");
+  const { i18n } = useTranslation('common')
 
   return (
     <Navbar.Wrapper>
       <Navbar.Logo>
-        <NavLink style={linkStyle} onClick={() => setOpenDrawerH(true)} to="/">
-          <Navbar.LogoImage src={imgLogo}></Navbar.LogoImage>
+        <NavLink style={linkStyle} onClick={() => setOpenDrawerH(true)} to='/'>
+          <Navbar.LogoImage src={whiteLogo}></Navbar.LogoImage>{' '}
+          <Navbar.LogoSpan openDrawer={!openDrawerH}>.</Navbar.LogoSpan>
         </NavLink>
 
         <SwitchContainer.Wrapper>
-          <CgDarkMode role="button" onClick={() => darkModeChange()} />
+          <CgDarkMode role='button' onClick={() => darkModeChange()} />
           <select
             style={SwitchLanguage}
             onChange={(e) => i18n.changeLanguage(e.target.value)}
           >
-            <option style={LanguageOption} value="en">
+            <option style={LanguageOption} value='en'>
               EN
             </option>
-            <option style={LanguageOption} value="de">
+            <option style={LanguageOption} value='de'>
               DE
             </option>
           </select>
@@ -97,46 +99,46 @@ const NavbarNav = () => {
             <NavLink
               style={linkStyle}
               onClick={() => setOpenDrawerH(true)}
-              to="/"
+              to='/'
             >
               HOME
             </NavLink>
           </Navbar.Item>
         </motion.div>
         <Navbar.Item>
-          {" "}
+          {' '}
           <NavLink
             style={linkStyle}
             onClick={() => setOpenDrawerH(true)}
-            to="/about"
+            to='/about'
           >
             ABOUT
           </NavLink>
         </Navbar.Item>
         <Navbar.Item>
-          {" "}
+          {' '}
           <NavLink
             style={linkStyle}
             onClick={() => setOpenDrawerH(true)}
-            to="/projects"
+            to='/projects'
           >
             PROJECTS
           </NavLink>
         </Navbar.Item>
         <Navbar.Item>
-          {" "}
+          {' '}
           <NavLink
             style={linkStyle}
             onClick={() => setOpenDrawerH(true)}
-            to="/contact"
+            to='/contact'
           >
             CONTACT
           </NavLink>
         </Navbar.Item>
       </Navbar.Items>
     </Navbar.Wrapper>
-  );
-};
+  )
+}
 
 const Navbar = {
   Wrapper: styled.nav`
@@ -171,6 +173,7 @@ const Navbar = {
   `,
   Logo: styled.div`
     width: 11em;
+    font-size: 5em;
 
     padding-left: 3rem;
     color: var(--color-foreground);
@@ -193,7 +196,26 @@ const Navbar = {
   `,
 
   LogoImage: styled.img`
-  width: 25%;
+    width: 25%;
+
+    &:hover {
+      width: 30%;
+    }
+
+    @media only screen and (max-width: 60em) {
+      width: 50%;
+    }
+  `,
+
+  LogoSpan: styled.span`
+    display: none;
+    ${({ openDrawer }) =>
+      openDrawer &&
+      `
+      display: inline;
+      color: red; 
+      font-weight: bold;
+      `}
   `,
   Items: styled.ul`
     list-style: none;
@@ -252,7 +274,7 @@ const Navbar = {
       font-weight: bold;
     }
   `,
-};
+}
 
 const HamburgerButton = {
   Wrapper: styled.button`
@@ -280,7 +302,7 @@ const HamburgerButton = {
     cursor: pointer;
 
     &:after {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       height: 150%;
@@ -301,7 +323,7 @@ const HamburgerButton = {
       height: 2px;
       pointer-events: none;
       display: block;
-      content: "";
+      content: '';
       width: 100%;
       background-color: var(--color-foreground);
       position: absolute;
@@ -316,7 +338,7 @@ const HamburgerButton = {
       top: 0.8rem;
     }
   `,
-};
+}
 const CloseButton = {
   Wrapper: styled.button`
     cursor: pointer;
@@ -334,7 +356,7 @@ const CloseButton = {
     border: none;
     background-color: transparent;
     outline: none;
-    content: "";
+    content: '';
 
     display: none;
 
@@ -350,41 +372,41 @@ const CloseButton = {
       right: 2.4em;
     }
   `,
-};
+}
 
 const SwitchContainer = {
   Wrapper: styled.div`
-    width: "4em";
+    width: '4em';
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
   `,
-};
+}
 
 const linkStyle = {
-  fontSize: "1.1em",
+  fontSize: '1.1em',
 
-  textDecoration: "none",
-  color: "var(--color-foreground)",
-};
+  textDecoration: 'none',
+  color: 'var(--color-foreground)',
+}
 
 const CloseStyle = {
-  color: "var(--color-foreground)",
-};
+  color: 'var(--color-foreground)',
+}
 
 const SwitchLanguage = {
-  backgroundColor: "transparent",
-  color: "var(--color-foreground)",
-  border: "none",
-  outline: "none",
-  cursor: "pointer",
-};
+  backgroundColor: 'transparent',
+  color: 'var(--color-foreground)',
+  border: 'none',
+  outline: 'none',
+  cursor: 'pointer',
+}
 
 const LanguageOption = {
-  backgroundColor: "var(--color-background)",
-  color: "var(--color-foreground)",
-};
+  backgroundColor: 'var(--color-background)',
+  color: 'var(--color-foreground)',
+}
 
-export default NavbarNav;
+export default NavbarNav
