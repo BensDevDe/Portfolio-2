@@ -1,60 +1,59 @@
-import "./App.scss";
-import React from "react";
-import styled, { createGlobalStyle } from "styled-components";
-import { Routes, Route, HashRouter } from "react-router-dom";
+import './App.scss'
+import React from 'react'
+import styled, { createGlobalStyle } from 'styled-components'
+import { Routes, Route, HashRouter } from 'react-router-dom'
 
-import NavbarNav from "./components/NavbarNav";
-import Home from "./components/Home";
-import About from "./components/About";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import NotFound from "./components/NotFound";
+import NavbarNav from './components/NavbarNav'
+import Home from './pages/Home'
+import About from './pages/About'
+import Projects from './pages/Projects'
+import Contact from './pages/Contact'
+import Footer from './components/Footer'
+import NotFound from './pages/NotFound'
 
-import NavState from "./components/context/NavState";
-import DarkState from "./components/context/DarkState"
+import NavState from './context/NavState'
+import DarkState from './context/DarkState'
 
-import data from "./projects-data.json";
+import data from './data/projects-data.json'
 
 function App() {
   return (
     <DarkState>
-    <NavState>
-      <HashRouter>
-        <Styles.Wrapper>
-          <CSSReset />
+      <NavState>
+        <HashRouter>
+          <Styles.Wrapper>
+            <CSSReset />
 
-          <NavbarNav />
+            <NavbarNav />
 
-          <Routes>
-            {<Route path="/" element={<Home />} />}
-            <Route path="/about" element={<About />} />
+            <Routes>
+              {<Route path='/' element={<Home />} />}
+              <Route path='/about' element={<About />} />
 
-            <Route path="/projects" element={<Projects projects={data} />} />
-            <Route
-              path="/projects/:name"
-              element={<Projects projects={data} />}
-            />
+              <Route path='/projects' element={<Projects projects={data} />} />
+              <Route
+                path='/projects/:name'
+                element={<Projects projects={data} />}
+              />
 
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+              <Route path='/contact' element={<Contact />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
 
-          <Footer />
-        </Styles.Wrapper>
-      </HashRouter>
-    </NavState>
+            <Footer />
+          </Styles.Wrapper>
+        </HashRouter>
+      </NavState>
     </DarkState>
-  );
+  )
 }
 
 const Styles = {
   Wrapper: styled.main`
-    display: flex;
-    height: 100%;
-    width: 100vw;
+    border: 3px solid var(--color-foreground);
+    border-bottom: none;
   `,
-};
+}
 
 const CSSReset = createGlobalStyle`
   *,
@@ -69,32 +68,25 @@ const CSSReset = createGlobalStyle`
 
   html {
     font-size: 62.5%; /*1rem = 10px*/
+    max-width: 100%;
+    overflow-x: hidden;
  
   }  
 
   body {
     height: 100%;
-    width: 100vw;
     font-size: 1.4rem;
     font-family: "Cairo", sans-serif;
     font-weight: 100;
-
-   
+    max-width: 100%;
+    overflow-x: hidden;
 
     --color-background: #f5ebe0;
     --color-foreground: black;
 
-    /* --color-about-background: #B5B5B5;
-    --color-about-foreground: black; */
-
-    
-
     &.dark {
       --color-background: black;
       --color-foreground: #f5ebe0;
-
-      /* --color-about-background: #B5B5B5;
-    --color-about-foreground: white; */
     }
 
 
@@ -103,6 +95,6 @@ const CSSReset = createGlobalStyle`
       --color-foreground: #f5ebe0;
     } */
   }
-`;
+`
 
-export default App;
+export default App

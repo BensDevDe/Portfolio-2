@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
-import AnimatedPage from './AnimatedPage'
+import AnimatedPage from '../components/AnimatedPage'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
 import { useTranslation } from 'react-i18next'
-import NavContext from './context/NavContext'
-import DarkContext from './context/DarkContext'
+import NavContext from '../context/NavContext'
+import DarkContext from '../context/DarkContext'
 
 import { send } from 'emailjs-com'
 
@@ -286,15 +286,6 @@ const Contact = () => {
               <p>Instagram</p>
             </ContactPage.LinkElement>
 
-            <ContactPage.LinkElement
-              show={showIt}
-              target='_blank'
-              href='https://xing.com'
-              rel='noreferrer'
-            >
-              <FaXing />
-              <p>Xing</p>
-            </ContactPage.LinkElement>
             <ContactPage.QrCode
               show={showIt}
               onMouseEnter={() => setShowIt(true)}
@@ -325,27 +316,24 @@ const ContactPage = {
         rgba(214, 214, 214, 0.8)
       ),
       url(${imgB})`};
-
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
 
-    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
     height: 100vh;
     font-size: 1.4em;
 
     color: var(--color-foreground);
     background-color: var(--color-background);
 
-    border: 3px solid var(--color-foreground);
-
     display: flex;
     justify-content: center;
     @media only screen and (max-width: 60em) {
       font-size: 1em;
       display: none;
-      height: 200%;
 
       flex-direction: column;
       justify-content: center;
@@ -385,9 +373,6 @@ const ContactPage = {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    @media only screen and (max-width: 60em) {
-    }
   `,
 
   FormHead: styled.p`
@@ -449,9 +434,6 @@ const ContactPage = {
     border: none;
     border-bottom: 1px solid var(--color-foreground);
     color: var(--color-foreground);
-
-    @media only screen and (max-width: 60em) {
-    }
   `,
   Option: styled.option`
     background-color: var(--color-background);
@@ -895,15 +877,6 @@ const ContactPage = {
       `}
     }
 
-    &:nth-of-type(5) {
-      ${({ show }) =>
-        show &&
-        `
-      display: none;
-     
-      `}
-    }
-
     &:nth-of-type(1):hover {
       box-shadow: 0 0 10px rgba(52, 58, 64, 0.9);
       color: #343a40;
@@ -921,10 +894,6 @@ const ContactPage = {
       color: #d6249f;
     }
 
-    &:nth-of-type(5):hover {
-      box-shadow: 0 0 10px rgba(5, 152, 160, 0.9);
-      color: #0598a0;
-    }
     p {
       font-size: 0.15em;
       @media only screen and (max-width: 60em) {

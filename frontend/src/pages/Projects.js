@@ -1,7 +1,7 @@
-import React from "react";
-import AnimatedPage from "./AnimatedPage";
-import styled from "styled-components";
-import imgB from "../images/DSC_3252.JPG";
+import React from 'react'
+import AnimatedPage from '../components/AnimatedPage'
+import styled from 'styled-components'
+import imgB from '../images/DSC_3252.JPG'
 
 const Projects = () => {
   const ProjectPage = {
@@ -18,7 +18,7 @@ const Projects = () => {
 
       overflow: hidden;
       width: 100vw;
-      height: 100%;
+      height: 100vh;
 
       padding: 20% 0px;
 
@@ -30,6 +30,7 @@ const Projects = () => {
       align-items: center;
 
       font-size: 10em;
+      z-index: 1;
 
       @media only screen and (max-width: 60em) {
         ${({ display }) =>
@@ -38,34 +39,17 @@ const Projects = () => {
                display: flex !important;
         `}
 
-font-size: 5em;
-padding: 70% 0px;
+        font-size: 5em;
+        padding: 70% 0px;
       }
     `,
-    WrapperSpan: styled.span`
-    color: var(--color-foreground);
-    font-size: 0.2em;
-    `,
+  }
 
-  
-  };
-
-  const ProjectContainer = {
-    Wrapper: styled.div`
-      color: var(--color-background);
-      border: 3px solid var(--color-foreground);
-    `,
-
-
-  };
-  
   return (
     <AnimatedPage>
-      <ProjectPage.Wrapper img={imgB}>PROJECTS <ProjectPage.WrapperSpan>...coming soon</ProjectPage.WrapperSpan></ProjectPage.Wrapper>
- 
-      <ProjectContainer.Wrapper></ProjectContainer.Wrapper>
+      <ProjectPage.Wrapper img={imgB}></ProjectPage.Wrapper>
     </AnimatedPage>
-  );
-};
+  )
+}
 
-export default Projects;
+export default Projects
