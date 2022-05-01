@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useContext, useState } from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import NavContext from './context/NavContext'
-import DarkContext from './context/DarkContext'
+import NavContext from '../context/NavContext'
+import DarkContext from '../context/DarkContext'
 
 import { CgDarkMode } from 'react-icons/cg'
 import { useTranslation } from 'react-i18next'
@@ -145,30 +145,26 @@ const Navbar = {
     flex: 1;
     align-self: flex-start;
     color: var(--color-foreground);
-    border: 3px solid var(--color-foreground);
-    border-bottom: none;
 
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 
     position: absolute;
-    width: 100vw;
+   width: 100vw;
     height: 10%;
     margin: 0 auto;
     padding: 1rem 3rem;
 
     @media only screen and (max-width: 60em) {
-      width: 100vw;
+      max-width: 100%;
+    overflow: hidden;
       position: fixed;
-
       bottom: 0;
-      padding: 1rem 0.5rem;
+      z-index: 999;
 
       align-items: center;
 
-      border: 3px solid var(--color-foreground);
-      border-top: none;
     }
   `,
   Logo: styled.div`

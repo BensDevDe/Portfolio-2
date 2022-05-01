@@ -75,11 +75,11 @@
     "scanMe": "Scan Me"
   },
 
-
   "about": {
     "title": "ABOUT",
     "skills": "SKILLS",
-    "me": "ME"
-    
+    "me": "ME",
+    "me_head": "Hi, my name is Ben. I am a Full stack web developer based in Munich, Germany",
+    "me_text": "A self starter Full stack web developer, graduated from a one year intensive training program in Full Stack Web Development (MERN Stack), with over eight years of experience in logistics development in previous industry. Seeking full-time employment as a Junior Frontend Developer to apply my knowledge and skills for continuous improvement."
   }
 }

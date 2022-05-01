@@ -1,107 +1,117 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
-import NavContext from "./context/NavContext";
-import DarkContext from "./context/DarkContext";
+import React, { useContext } from 'react'
+import styled from 'styled-components'
+import NavContext from '../context/NavContext'
+import DarkContext from '../context/DarkContext'
 
-import { useTranslation } from "react-i18next";
-import AnimatedPage from "./AnimatedPage";
-import { motion } from "framer-motion";
+import { useTranslation } from 'react-i18next'
+import AnimatedPage from '../components/AnimatedPage'
+import { motion } from 'framer-motion'
 
-import { FaGithub, FaLinkedinIn, FaInstagram, FaXing } from "react-icons/fa";
-import { MdAlternateEmail } from "react-icons/md";
+import { FaGithub, FaLinkedinIn, FaInstagram, FaXing } from 'react-icons/fa'
+import { MdAlternateEmail } from 'react-icons/md'
 
-import imgB from "../images/IMG_ME.jpeg";
+import imgB from '../images/IMG_ME.jpeg'
 
 const onHover = {
   whileHover: { scale: 1.9 },
   transition: { duration: 1 },
-};
-
+}
 const Home = () => {
- 
-
-  const { isDark } = useContext(DarkContext);
-
-  const { openDrawerH } = useContext(NavContext);
-
-  const { t } = useTranslation("common");
-
+  const { isDark } = useContext(DarkContext)
+  const { openDrawerH } = useContext(NavContext)
+  const { t } = useTranslation('common')
   return (
     <AnimatedPage>
       <HomePage.Wrapper display={openDrawerH} dark={isDark} img={imgB}>
         <HomePage.Text>
-          {" "}
+          {' '}
           <motion.div
             animate={{
-              fontSize: ["0%", "25%", "50%", "75%", "100%", "125%","140%", "120%", "100%"],
+              fontSize: [
+                '0%',
+                '25%',
+                '50%',
+                '75%',
+                '100%',
+                '125%',
+                '140%',
+                '120%',
+                '100%',
+              ],
 
               transition: { duration: 0.5, delay: 1 },
             }}
           >
             <HomePage.Item>
-              {" "}
-              <motion.span variants={onHover}>B</motion.span>{" "}
-              <HomePage.NameSpan display={!openDrawerH}>E</HomePage.NameSpan>{" "}
-              <HomePage.NameSpan2 display={!openDrawerH}>N</HomePage.NameSpan2> STAUTNER
+              {' '}
+              <motion.span variants={onHover}>B</motion.span>{' '}
+              <HomePage.NameSpan display={!openDrawerH}>E</HomePage.NameSpan>{' '}
+              <HomePage.NameSpan2 display={!openDrawerH}>N</HomePage.NameSpan2>{' '}
+              STAUTNER
             </HomePage.Item>
             <HomePage.Item>
-              {" "}
+              {' '}
               <HomePage.BoldSpan>
-                {" "}
-                {t("welcome.boldTitle")}{" "}
-                <HomePage.NameSpan3 display={!openDrawerH}>E</HomePage.NameSpan3>{" "}
-                <HomePage.NameSpan4 display={!openDrawerH}>B</HomePage.NameSpan4>{" "}
+                {' '}
+                {t('welcome.boldTitle')}{' '}
+                <HomePage.NameSpan3 display={!openDrawerH}>
+                  E
+                </HomePage.NameSpan3>{' '}
+                <HomePage.NameSpan4 display={!openDrawerH}>
+                  B
+                </HomePage.NameSpan4>{' '}
               </HomePage.BoldSpan>
-              {t("welcome.title")}
-            </HomePage.Item>{" "}
+              {t('welcome.title')}
+            </HomePage.Item>{' '}
             <HomePage.LinkContainer>
               <HomePage.LinkElement
-                target="_blank"
-                href="https://github.com/BensDevDe"
-                rel="noreferrer"
+                target='_blank'
+                href='https://github.com/BensDevDe'
+                rel='noreferrer'
               >
-                {" "}
+                {' '}
                 <FaGithub />
               </HomePage.LinkElement>
               <HomePage.LinkElement
-                target="_blank"
-                href="https://linkedin.com/in/ben-stautner-17a721226"
-                rel="noreferrer"
+                target='_blank'
+                href='https://linkedin.com/in/ben-stautner-17a721226'
+                rel='noreferrer'
               >
                 <FaLinkedinIn />
               </HomePage.LinkElement>
               <HomePage.LinkElement
-                target="_blank"
-                href="mailto:info@webogies.com"
-                rel="noreferrer"
+                target='_blank'
+                href='mailto:info@webogies.com'
+                rel='noreferrer'
               >
-                {" "}
+                {' '}
                 <MdAlternateEmail />
               </HomePage.LinkElement>
               <HomePage.LinkElement
-                target="_blank"
-                href="https://instagram.com/webogies"
-                rel="noreferrer"
+                target='_blank'
+                href='https://instagram.com/webogies'
+                rel='noreferrer'
               >
                 <FaInstagram />
-              </HomePage.LinkElement>
-              <HomePage.LinkElement
-                target="_blank"
-                href="https://xing.com"
-                rel="noreferrer"
-              >
-                <FaXing />
               </HomePage.LinkElement>
             </HomePage.LinkContainer>
           </motion.div>
         </HomePage.Text>
       </HomePage.Wrapper>
     </AnimatedPage>
-  );
-};
+  )
+}
 
 const HomePage = {
   Wrapper: styled.section`
+    max-width: 100%;
+    overflow-x: hidden;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-image: ${({ dark }) =>
       dark
         ? `linear-gradient(
@@ -110,7 +120,8 @@ const HomePage = {
       ),
       url(${imgB})`
         : `linear-gradient(
-        rgba(255, 255, 224, 0.9),
+        rgba(	
+238,238,209, 0.9),
         rgba(214, 214, 214, 0.9)
       ),
       url(${imgB})`};
@@ -119,19 +130,7 @@ const HomePage = {
     background-size: cover;
     background-attachment: fixed;
 
-    overflow: hidden;
-
-    width: 100vw;
-    height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: 3px solid var(--color-foreground);
-
     @media only screen and (max-width: 60em) {
- 
       ${({ display }) =>
         display &&
         `
@@ -153,10 +152,6 @@ const HomePage = {
     align-items: flex-start;
 
     @media only screen and (max-width: 60em) {
-      padding: 0 em;
-      height: 400px;
-      justify-content: space-between;
-      align-items: space-between;
     }
   `,
   Item: styled.p`
@@ -164,7 +159,7 @@ const HomePage = {
     height: 100px;
 
     @media only screen and (max-width: 60em) {
-      font-size: 3em;
+      font-size: 2em;
       font-weight: bold;
       height: 30px;
     }
@@ -179,7 +174,7 @@ const HomePage = {
 
   NameSpan: styled.span`
     margin-left: 4px;
- 
+
     ${({ display }) =>
       display &&
       `
@@ -249,7 +244,7 @@ const HomePage = {
     align-items: center;
 
     @media only screen and (max-width: 60em) {
-      width: 100%;
+      width: 150%;
       height: 80%;
 
       align-items: flex-start;
@@ -259,7 +254,6 @@ const HomePage = {
       display: flex;
       margin-top: -170px;
       gap: 10px;
-      
     }
   `,
 
@@ -267,6 +261,7 @@ const HomePage = {
     color: var(--color-foreground);
     text-decoration: none;
     font-size: 1.7em;
+    margin-right: 30px;
     &:nth-of-type(1):hover {
       color: #343a40;
     }
@@ -279,10 +274,7 @@ const HomePage = {
     &:nth-of-type(4):hover {
       color: #d6249f;
     }
-    &:nth-of-type(5):hover {
-      color: #0598a0;
-    }
   `,
-};
+}
 
-export default Home;
+export default Home

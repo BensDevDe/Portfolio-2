@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
-import { FaGithub, FaLinkedinIn, FaInstagram, FaXing } from "react-icons/fa";
-import { MdAlternateEmail } from "react-icons/md";
+import { FaGithub, FaLinkedinIn, FaInstagram, FaXing } from 'react-icons/fa'
+import { MdAlternateEmail } from 'react-icons/md'
 
 const getCurrentYear = () => {
-  return new Date().getFullYear();
-};
+  return new Date().getFullYear()
+}
 
 const Footer = () => {
   return (
@@ -15,65 +15,59 @@ const Footer = () => {
       <FooterPage.Box>
         <FooterPage.LinkContainer>
           <FooterPage.LinkElement
-            target="_blank"
-            href="https://github.com/BensDevDe"
-            rel="noreferrer"
+            target='_blank'
+            href='https://github.com/BensDevDe'
+            rel='noreferrer'
           >
-            {" "}
+            {' '}
             <FaGithub />
           </FooterPage.LinkElement>
           <FooterPage.LinkElement
-            target="_blank"
-            href="https://linkedin.com/in/ben-stautner-17a721226"
-            rel="noreferrer"
+            target='_blank'
+            href='https://linkedin.com/in/ben-stautner-17a721226'
+            rel='noreferrer'
           >
             <FaLinkedinIn />
           </FooterPage.LinkElement>
           <FooterPage.LinkElement
-            target="_blank"
-            href="mailto:info@webogies.com"
-            rel="noreferrer"
+            target='_blank'
+            href='mailto:info@webogies.com'
+            rel='noreferrer'
           >
-            {" "}
+            {' '}
             <MdAlternateEmail />
           </FooterPage.LinkElement>
           <FooterPage.LinkElement
-            target="_blank"
-            href="https://instagram.com/webogies"
-            rel="noreferrer"
+            target='_blank'
+            href='https://instagram.com/webogies'
+            rel='noreferrer'
           >
             <FaInstagram />
           </FooterPage.LinkElement>
           <FooterPage.LinkElement
-            target="_blank"
-            href="https://xing.com"
-            rel="noreferrer"
+            target='_blank'
+            href='https://xing.com'
+            rel='noreferrer'
           >
             <FaXing />
           </FooterPage.LinkElement>
         </FooterPage.LinkContainer>
       </FooterPage.Box>
     </FooterPage.Wrapper>
-  );
-};
+  )
+}
 
 const FooterPage = {
   Wrapper: styled.section`
-    width: 100vw;
     height: 5%;
     color: var(--color-foreground);
-    background-color: var(--color-about_background);
+    background-color: var(--color-background);
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 4em;
-
-    position: fixed;
-    bottom: 0;
-
-    border: 3px solid var(--color-foreground);
-    border-top: none;
+   
+    padding: 0.5em 4em;
 
     @media only screen and (max-width: 60em) {
       display: none;
@@ -84,19 +78,16 @@ const FooterPage = {
     display: flex;
     justify-content: center;
     align-items: center;
-
-   
   `,
   LinkContainer: styled.div`
     width: 150px;
-   
 
     display: flex;
     justify-content: space-between;
     align-items: center;
   `,
   LinkElement: styled.a`
-   color: var(--color-foreground);
+    color: var(--color-foreground);
     text-decoration: none;
     &:nth-of-type(1):hover {
       color: #343a40;
@@ -112,9 +103,9 @@ const FooterPage = {
     }
 
     &:nth-of-type(5):hover {
-      color: #0598A0;
+      color: #0598a0;
     }
   `,
-};
+}
 
-export default Footer;
+export default Footer
