@@ -44,13 +44,6 @@ const Footer = () => {
           >
             <FaInstagram />
           </FooterPage.LinkElement>
-          <FooterPage.LinkElement
-            target='_blank'
-            href='https://xing.com'
-            rel='noreferrer'
-          >
-            <FaXing />
-          </FooterPage.LinkElement>
         </FooterPage.LinkContainer>
       </FooterPage.Box>
     </FooterPage.Wrapper>
@@ -66,7 +59,7 @@ const FooterPage = {
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
+
     padding: 0.5em 4em;
 
     @media only screen and (max-width: 60em) {
@@ -100,10 +93,6 @@ const FooterPage = {
     }
     &:nth-of-type(4):hover {
       color: #d6249f;
-    }
-
-    &:nth-of-type(5):hover {
-      color: #0598a0;
     }
   `,
 }
