@@ -23,6 +23,38 @@ const Home = () => {
   return (
     <AnimatedPage>
       <HomePage.Wrapper display={openDrawerH} dark={isDark} img={imgB}>
+        <HomePage.LinkContainer>
+          <HomePage.LinkElement
+            target='_blank'
+            href='https://github.com/BensDevDe'
+            rel='noreferrer'
+          >
+            {' '}
+            <FaGithub />
+          </HomePage.LinkElement>
+          <HomePage.LinkElement
+            target='_blank'
+            href='https://linkedin.com/in/ben-stautner-17a721226'
+            rel='noreferrer'
+          >
+            <FaLinkedinIn />
+          </HomePage.LinkElement>
+          <HomePage.LinkElement
+            target='_blank'
+            href='mailto:info@webogies.com'
+            rel='noreferrer'
+          >
+            {' '}
+            <MdAlternateEmail />
+          </HomePage.LinkElement>
+          <HomePage.LinkElement
+            target='_blank'
+            href='https://instagram.com/webogies'
+            rel='noreferrer'
+          >
+            <FaInstagram />
+          </HomePage.LinkElement>
+        </HomePage.LinkContainer>
         <HomePage.Text>
           {' '}
           <motion.div
@@ -63,38 +95,6 @@ const Home = () => {
               </HomePage.BoldSpan>
               {t('welcome.title')}
             </HomePage.Item>{' '}
-            <HomePage.LinkContainer>
-              <HomePage.LinkElement
-                target='_blank'
-                href='https://github.com/BensDevDe'
-                rel='noreferrer'
-              >
-                {' '}
-                <FaGithub />
-              </HomePage.LinkElement>
-              <HomePage.LinkElement
-                target='_blank'
-                href='https://linkedin.com/in/ben-stautner-17a721226'
-                rel='noreferrer'
-              >
-                <FaLinkedinIn />
-              </HomePage.LinkElement>
-              <HomePage.LinkElement
-                target='_blank'
-                href='mailto:info@webogies.com'
-                rel='noreferrer'
-              >
-                {' '}
-                <MdAlternateEmail />
-              </HomePage.LinkElement>
-              <HomePage.LinkElement
-                target='_blank'
-                href='https://instagram.com/webogies'
-                rel='noreferrer'
-              >
-                <FaInstagram />
-              </HomePage.LinkElement>
-            </HomePage.LinkContainer>
           </motion.div>
         </HomePage.Text>
       </HomePage.Wrapper>
@@ -131,6 +131,8 @@ const HomePage = {
     background-attachment: fixed;
 
     @media only screen and (max-width: 60em) {
+      flex-direction: column;
+      padding-top: 50px;
       ${({ display }) =>
         display &&
         `
@@ -152,6 +154,7 @@ const HomePage = {
     align-items: flex-start;
 
     @media only screen and (max-width: 60em) {
+      padding: 0 3em;
     }
   `,
   Item: styled.p`
@@ -159,14 +162,13 @@ const HomePage = {
     height: 100px;
 
     @media only screen and (max-width: 60em) {
-      font-size: 2em;
-      font-weight: bold;
+      font-size: 1.7em;
+      /* font-weight: bold; */
       height: 30px;
     }
   `,
   BoldSpan: styled.span`
     margin-right: 22px;
-
     @media only screen and (max-width: 60em) {
       margin-right: 0px;
     }
@@ -174,7 +176,6 @@ const HomePage = {
 
   NameSpan: styled.span`
     margin-left: 4px;
-
     ${({ display }) =>
       display &&
       `
@@ -244,16 +245,11 @@ const HomePage = {
     align-items: center;
 
     @media only screen and (max-width: 60em) {
-      width: 150%;
-      height: 80%;
-
+      display: flex;
       align-items: flex-start;
       justify-content: center;
       flex-wrap: wrap;
       font-size: 1.2em;
-      display: flex;
-      margin-top: -170px;
-      gap: 10px;
     }
   `,
 

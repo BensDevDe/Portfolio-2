@@ -342,8 +342,6 @@ const ContactPage = {
         display &&
         `
     display: flex !important;
- 
-   
     `}
     }
   `,
@@ -357,7 +355,6 @@ const ContactPage = {
 
     @media only screen and (max-width: 60em) {
       flex-direction: column;
-      margin-top: -70px;
     }
   `,
   // Contact Form Container
@@ -365,7 +362,7 @@ const ContactPage = {
     width: 100%;
 
     @media only screen and (max-width: 60em) {
-      margin-bottom: 80px;
+      margin-bottom: 60px;
     }
   `,
   // Form
