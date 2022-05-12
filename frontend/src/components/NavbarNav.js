@@ -49,7 +49,12 @@ const NavbarNav = () => {
     <Navbar.Wrapper>
       <Navbar.Logo>
         <NavLink style={linkStyle} onClick={() => setOpenDrawerH(true)} to='/'>
-          <Navbar.LogoImage src={whiteLogo}></Navbar.LogoImage>{' '}
+          {isDark ? (
+            <Navbar.LogoImage src={whiteLogo}></Navbar.LogoImage>
+          ) : (
+            <Navbar.LogoImage src={blackLogo}></Navbar.LogoImage>
+          )}
+
           <Navbar.LogoSpan openDrawer={!openDrawerH}>.</Navbar.LogoSpan>
         </NavLink>
 
@@ -151,20 +156,19 @@ const Navbar = {
     align-items: flex-start;
 
     position: absolute;
-   width: 100vw;
+    width: 100vw;
     height: 10%;
     margin: 0 auto;
     padding: 1rem 3rem;
 
     @media only screen and (max-width: 60em) {
       max-width: 100%;
-    overflow: hidden;
+      overflow: hidden;
       position: fixed;
       bottom: 0;
       z-index: 999;
 
       align-items: center;
-
     }
   `,
   Logo: styled.div`
