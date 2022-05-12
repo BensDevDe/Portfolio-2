@@ -1,9 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import NavContext from '../context/NavContext'
 
 import DarkContext from '../context/DarkContext'
+
+import { motion } from 'framer-motion'
 
 import AnimatedPage from '../components/AnimatedPage'
 import styled from 'styled-components'
@@ -26,12 +28,51 @@ const Projects = () => {
   const { openDrawerH } = useContext(NavContext)
   const { isDark } = useContext(DarkContext)
   const { t } = useTranslation('common')
+  const [showIt, setShowIt] = useState(false)
+  const [showIt1, setShowIt1] = useState(false)
+
+  console.log(showIt, showIt1)
+
+  const zoomInOut = () => {
+    if (showIt === false) {
+      setShowIt(true)
+      setShowIt1(false)
+    } else {
+      setShowIt(false)
+    }
+  }
+  const zoomInOut1 = () => {
+    if (showIt1 === false) {
+      setShowIt1(true)
+      setShowIt(false)
+    } else {
+      setShowIt1(false)
+    }
+  }
+
+  const variants = {
+    open: {
+      opacity: 1,
+      x: '40%',
+      y: '5%',
+      scale: 1.8,
+      transition: { duration: 1 },
+    },
+    closed: {
+      opacity: 0.7,
+      x: '0%',
+      y: '0%',
+      scale: 1,
+      transition: { duration: 2 },
+    },
+  }
+
   const ProjectPage = {
     WrapperMain: styled.section`
       background-image: ${({ dark }) =>
         dark
           ? `linear-gradient(
-          rgba(109, 132, 197, 0.9),
+          rgba(109, 132, 0, 0.9),
           rgba(0, 0, 0, 0.9)
   ),
   url(${imgB})`
@@ -44,15 +85,11 @@ const Projects = () => {
       overflow: hidden;
       max-width: 100%;
       overflow-x: hidden;
-      height: 100vh;
+      height: 100%;
 
       padding: 1.5em 1em;
 
       color: var(--color-foreground);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
 
       z-index: 1;
 
@@ -67,10 +104,12 @@ const Projects = () => {
       }
     `,
 
-    WrapperH1: styled.h1`
-      font-size: 8em;
+    H1: styled.h1`
+      font-size: 7em;
       font-weight: 100;
       margin-bottom: 0.8em;
+
+      padding: 1em 0em 0em 1.5em;
 
       @media only screen and (max-width: 60em) {
         font-size: 5em;
@@ -81,18 +120,91 @@ const Projects = () => {
 
     Wrapper: styled.section`
       display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
+      flex-direction: column;
 
-      font-size: 10em;
       z-index: 1;
 
       @media only screen and (max-width: 80em) {
-        font-size: 2em;
-        flex-direction: column;
-        align-items: space-around;
-        height: 100%;
-        margin-bottom: 30px;
+      }
+    `,
+
+    BoxMainLink: styled.a``,
+
+    Box: styled.div`
+      /* min-width: 120em;
+      max-width: 50em; */
+      min-height: 50em;
+
+      padding: 10px 15px 10px 50px;
+
+      position: relative;
+
+      display: flex;
+      justify-content: space-between;
+
+      &:hover {
+      }
+    `,
+
+    BoxHead: styled.figure`
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    `,
+
+    BoxImage: styled.img`
+      width: 100%;
+      border: 1px solid var(--color-foreground);
+      box-shadow: 5px 5px var(--color-foreground);
+
+      cursor: ${({ show, show1 }) =>
+        (show || show1) === true ? `zoom-out` : `zoom-in`};
+
+      &:hover {
+        box-shadow: -5px -5px var(--color-foreground);
+      }
+    `,
+    BoxImageCaption: styled.figcaption`
+      font-size: 3em;
+      font-weight: bold;
+      position: absolute;
+      bottom: 6%;
+      left: 0.3em;
+      color: white;
+
+      padding-left: 30px;
+    `,
+
+    BoxText: styled.p`
+      width: 100%;
+      min-height: 10em;
+      padding: 20px 40px;
+      margin-bottom: 20px;
+      font-size: 1.7em;
+
+      border-bottom: none;
+    `,
+
+    BoxLink: styled.div`
+      width: calc(100% - 25px);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      padding: 10px 0;
+
+      position: absolute;
+      bottom: 5%;
+    `,
+
+    Link: styled.a`
+      color: white;
+      font-size: 2em;
+
+      &:last-child {
+        margin-right: 2em;
+        margin-left: 2em;
       }
     `,
   }
@@ -100,13 +212,81 @@ const Projects = () => {
   return (
     <AnimatedPage>
       <ProjectPage.WrapperMain display={openDrawerH} dark={isDark} img={imgB}>
-        <ProjectPage.WrapperH1>
-          Projects <GiBottomRight3DArrow />
-        </ProjectPage.WrapperH1>
+        <ProjectPage.H1>Projects</ProjectPage.H1>
 
         <ProjectPage.Wrapper>
-          {' '}
-          <Card
+          <ProjectPage.Box showIt={showIt}>
+            <motion.button
+              style={{ backgroundColor: 'transparent', border: 'none' }}
+              show={showIt}
+              animate={showIt ? 'open' : 'closed'}
+              variants={variants}
+              onClick={zoomInOut}
+            >
+              <ProjectPage.BoxHead>
+                {' '}
+                <ProjectPage.BoxImage src={projectToDoImg} show={showIt} />
+                <ProjectPage.BoxImageCaption>
+                  To-Do App
+                </ProjectPage.BoxImageCaption>
+                <ProjectPage.BoxLink dark={isDark} img={imgB}>
+                  <ProjectPage.Link
+                    target='_blank'
+                    href='https://github.com/BensDevDe/To-Do-App'
+                    rel='noreferrer'
+                  >
+                    {' '}
+                    <FaGithub />
+                  </ProjectPage.Link>
+                  <ProjectPage.Link
+                    target='_blank'
+                    href='https://xenodochial-mahavira-e4828c.netlify.app/'
+                    rel='noreferrer'
+                  >
+                    Visit
+                  </ProjectPage.Link>
+                </ProjectPage.BoxLink>
+              </ProjectPage.BoxHead>
+
+              <ProjectPage.BoxText>test text</ProjectPage.BoxText>
+            </motion.button>
+          </ProjectPage.Box>{' '}
+          <ProjectPage.Box>
+            <motion.button
+              style={{ backgroundColor: 'transparent', border: 'none' }}
+              animate={showIt1 ? 'open' : 'closed'}
+              variants={variants}
+              onClick={zoomInOut1}
+            >
+              <ProjectPage.BoxHead>
+                {' '}
+                <ProjectPage.BoxImage src={projectToDoImg} show={showIt1} />
+                <ProjectPage.BoxImageCaption>
+                  To-Do App
+                </ProjectPage.BoxImageCaption>
+                <ProjectPage.BoxLink dark={isDark} img={imgB}>
+                  <ProjectPage.Link
+                    target='_blank'
+                    href='https://github.com/BensDevDe/To-Do-App'
+                    rel='noreferrer'
+                  >
+                    {' '}
+                    <FaGithub />
+                  </ProjectPage.Link>
+                  <ProjectPage.Link
+                    target='_blank'
+                    href='https://xenodochial-mahavira-e4828c.netlify.app/'
+                    rel='noreferrer'
+                  >
+                    Visit
+                  </ProjectPage.Link>
+                </ProjectPage.BoxLink>
+              </ProjectPage.BoxHead>
+
+              <ProjectPage.BoxText>test text</ProjectPage.BoxText>
+            </motion.button>
+          </ProjectPage.Box>{' '}
+          {/* <Card
             sx={{
               maxWidth: 600,
               border: '3px solid white',
@@ -395,7 +575,7 @@ const Projects = () => {
                 </a>
               </Button>
             </CardActions>
-          </Card>
+          </Card> */}
         </ProjectPage.Wrapper>
       </ProjectPage.WrapperMain>
     </AnimatedPage>
