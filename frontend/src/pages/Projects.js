@@ -20,6 +20,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
 import { FaGithub, FaReact } from 'react-icons/fa'
+import { GiBottomRight3DArrow } from 'react-icons/gi'
 
 const Projects = () => {
   const { openDrawerH } = useContext(NavContext)
@@ -62,16 +63,19 @@ const Projects = () => {
                display: flex !important;
         `}
         height: 100%;
+        padding: 1.5em 0.1em;
       }
     `,
 
     WrapperH1: styled.h1`
       font-size: 8em;
       font-weight: 100;
+      margin-bottom: 0.8em;
 
       @media only screen and (max-width: 60em) {
-        font-size: 4em;
-        margin-bottom: -2em;
+        font-size: 5em;
+        margin-bottom: 1em;
+        font-weight: bold;
       }
     `,
 
@@ -83,13 +87,12 @@ const Projects = () => {
       font-size: 10em;
       z-index: 1;
 
-      @media only screen and (max-width: 60em) {
-        font-size: 5em;
-        padding: 2em 0.5em;
+      @media only screen and (max-width: 80em) {
+        font-size: 2em;
         flex-direction: column;
         align-items: space-around;
         height: 100%;
-        gap: 5%;
+        margin-bottom: 30px;
       }
     `,
   }
@@ -97,23 +100,28 @@ const Projects = () => {
   return (
     <AnimatedPage>
       <ProjectPage.WrapperMain display={openDrawerH} dark={isDark} img={imgB}>
-        <ProjectPage.WrapperH1>Projects</ProjectPage.WrapperH1>
+        <ProjectPage.WrapperH1>
+          Projects <GiBottomRight3DArrow />
+        </ProjectPage.WrapperH1>
 
         <ProjectPage.Wrapper>
           {' '}
           <Card
             sx={{
               maxWidth: 600,
-              border: '6px solid white',
+              border: '3px solid white',
               backgroundColor: 'var(--color-background)',
-              marginBottom: '0.2em',
-              marginRight: '0.2em',
+              marginBottom: '0.8em',
+              marginRight: '0.8em',
+              marginLeft: '0.8em',
+              borderRadius: '25px',
+              position: 'relative',
             }}
           >
             <CardMedia
               component='img'
               alt='TO DO App'
-              // height="140"
+              height='300'
               image={projectToDoImg}
             />
             <CardContent>
@@ -128,13 +136,23 @@ const Projects = () => {
               <Typography
                 variant='body2'
                 color='text.secondary'
-                sx={{ color: 'var(--color-foreground)', fontSize: '0.15em' }}
+                sx={{
+                  color: 'var(--color-foreground)',
+                  fontSize: '0.15em',
+                  height: '7em',
+                  overflow: 'auto',
+                }}
               >
                 ...
               </Typography>
             </CardContent>
             <CardActions>
-              <Button>
+              <Button
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                }}
+              >
                 {' '}
                 <a
                   style={{
@@ -156,7 +174,13 @@ const Projects = () => {
                   </span>
                 </a>
               </Button>
-              <Button>
+              <Button
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: '40%',
+                }}
+              >
                 {' '}
                 <a
                   style={{
@@ -182,16 +206,19 @@ const Projects = () => {
           <Card
             sx={{
               maxWidth: 600,
-              border: '6px solid white',
+              border: '3px solid white',
               backgroundColor: 'var(--color-background)',
-              marginBottom: '0.2em',
-              marginRight: '0.2em',
+              marginBottom: '0.8em',
+              marginRight: '0.8em',
+              marginLeft: '0.8em',
+              borderRadius: '25px',
+              position: 'relative',
             }}
           >
             <CardMedia
               component='img'
               alt='Movie Search App'
-              // height="140"
+              height='300'
               image={projectMovieSearch}
             />
             <CardContent>
@@ -206,13 +233,23 @@ const Projects = () => {
               <Typography
                 variant='body2'
                 color='text.secondary'
-                sx={{ color: 'var(--color-foreground)', fontSize: '0.15em' }}
+                sx={{
+                  color: 'var(--color-foreground)',
+                  fontSize: '0.15em',
+                  height: '7em',
+                  overflow: 'auto',
+                }}
               >
                 ...
               </Typography>
             </CardContent>
             <CardActions>
-              <Button>
+              <Button
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                }}
+              >
                 {' '}
                 <a
                   style={{
@@ -234,7 +271,13 @@ const Projects = () => {
                   </span>
                 </a>
               </Button>
-              <Button>
+              <Button
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: '40%',
+                }}
+              >
                 {' '}
                 <a
                   style={{
@@ -260,14 +303,18 @@ const Projects = () => {
           <Card
             sx={{
               maxWidth: 600,
-              border: '6px solid white',
+              border: '3px solid white',
               backgroundColor: 'var(--color-background)',
+              marginRight: '0.8em',
+              marginLeft: '0.8em',
+              borderRadius: '25px',
+              position: 'relative',
             }}
           >
             <CardMedia
               component='img'
               alt='Portfolio Page'
-              // height="140"
+              height='300'
               image={projectPortfolio}
             />
             <CardContent>
@@ -282,13 +329,23 @@ const Projects = () => {
               <Typography
                 variant='body2'
                 color='text.secondary'
-                sx={{ color: 'var(--color-foreground)', fontSize: '0.15em' }}
+                sx={{
+                  color: 'var(--color-foreground)',
+                  fontSize: '0.15em',
+                  height: '7em',
+                  overflow: 'auto',
+                }}
               >
                 ...
               </Typography>
             </CardContent>
             <CardActions>
-              <Button>
+              <Button
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                }}
+              >
                 {' '}
                 <a
                   style={{
@@ -310,7 +367,13 @@ const Projects = () => {
                   </span>
                 </a>
               </Button>
-              <Button>
+              <Button
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: '40%',
+                }}
+              >
                 {' '}
                 <a
                   style={{
